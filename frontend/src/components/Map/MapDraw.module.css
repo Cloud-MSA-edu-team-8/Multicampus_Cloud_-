@@ -1,0 +1,14 @@
+.container {
+    /* overflow: hidden; */
+    /* cursor : grab; */
+    /* align-items: center;
+    flex-direction: column;
+    justify-content: center; 
+    width :50%; */
+    /* position : fixed; */ 
+}
+.leaflet-container {
+    height: 400px;
+    width: 80%;
+    margin: 0 auto;
+}

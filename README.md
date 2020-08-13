@@ -1,2 +1,5 @@
 # django-react
-Test
+
+Backend : Django REST Framework
+
+Frontend : React

@@ -25,7 +25,6 @@ key =''
 with open(str(BASE_DIR.parent) + '/keys.json', 'r') as keydata:
     key = json.load(keydata)
 SECRET_KEY = key['django_key']
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

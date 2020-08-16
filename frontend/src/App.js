@@ -1,41 +1,32 @@
 import React from 'react';
-import { Posts, MapDraw, VectorLayersExample } from './components'
+import { Posts, MapDraw, VectorLayersExample, Goo_comp, DrawGoogleMap } from './components'
+
+import { fetchDjango } from './api';
 
 import styles from './App.module.css';
-// import Choropleth from './components/Choropleth/Choropleth';
 
 class App extends React.Component{
     state = {
         posts  : [],
-        geojson : '',
     };
     async componentDidMount(){
-        try {
-            const res = await fetch('http://localhost:8000/api/')
-            const posts = await res.json();
-            this.setState({
-                posts : posts 
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        const posts = await fetchDjango();
+        this.setState({
+            posts : posts 
+        });
     }
-    // getGeoJson = async () =>{
-    //     try{
-    //         const { data: {geojson} } = await axios.get(url)
-    //     }
-    // }
-    // console.log(geodata)
+
     render() {
-        const { posts, geojson } = this.state; // this is better to use 
-        // console.log(geojson)
+        const { posts } = this.state; // this is better to use 
         return (
             <div>
-            <div className ={ styles.container }>
-                <h1>POSTS TEST</h1>
-                <Posts posts={ posts }/>
-            </div>
-            <MapDraw/>
+                <div className ={ styles.container }>
+                    <Goo_comp/>
+                    <h1>POSTS TEST</h1>
+                    <Posts posts={ posts }/>
+                </div>
+                <MapDraw/>
+                {/* <DrawGoogleMap /> */}
             </div>
         )
     }

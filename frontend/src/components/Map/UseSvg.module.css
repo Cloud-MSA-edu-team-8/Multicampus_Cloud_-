@@ -1,0 +1,26 @@
+.container{
+    height: 90vh;
+    width: 90vw;
+    margin : 0 auto;
+    font-family: 'Black Han Sans', sans-serif;
+    color:red;
+    font-size : 130%;    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.container path {
+    /* fill : #ffffff; */
+    /* opacity: ; */
+
+    stroke : #f0f0f0;
+    stroke-width: 3;
+    stroke-opacity: 0.5;
+    
+}
+.container path:hover {
+    opacity: 0.5;
+    /* transform : scale(0.5); */
+    transition-duration: .3s;
+}

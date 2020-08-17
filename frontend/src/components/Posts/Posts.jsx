@@ -18,6 +18,7 @@ const Posts = ({posts}) => {
 
     return (
         <div className={styles.container}>
+            <h1>POSTS TEST</h1>
             {posts.map((post, i)=>
             <List>
                 <ListItem alignItems="flex-start">

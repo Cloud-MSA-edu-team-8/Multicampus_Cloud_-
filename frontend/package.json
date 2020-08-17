@@ -17,10 +17,12 @@
     "google-maps-react": "^2.0.6",
     "leaflet": "^1.6.0",
     "react": "^16.13.1",
+    "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-leaflet": "^2.7.0",
     "react-leaflet-choropleth": "^2.0.1",
     "react-scripts": "^3.4.2",
+    "react-svg": "^11.0.35",
     "typescript": "^3.9.7"
   },
   "scripts": {

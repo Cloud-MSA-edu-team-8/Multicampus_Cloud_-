@@ -10,3 +10,6 @@ export {default as Goo_comp} from './Map/Goo_comp'
 
 export {default as UseSvg} from './Map/UseSvg'
 export {default as Picker} from './Picker/Picker'
+
+// export {default as Chart} from './Chart/Chart'
+export {default as DrawTable} from './DrawTable/DrawTable'

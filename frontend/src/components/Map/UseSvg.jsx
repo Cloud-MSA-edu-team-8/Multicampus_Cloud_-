@@ -5,6 +5,8 @@ import { fetchTestData } from '../../api';
 
 import styles from './UseSvg.module.css';
 
+import defalutSvg from './seoul.svg';
+
 var region_dict = {
     "KR11110" : "M 455 297 l 4 -2 1 0 1 0 3 -1 4 5 7 3 2 6 0 8 -11 2 -11 1 -8 0 -9 1 -8 1 -9 1 -9 -2 -10 -1 -9 1 -4 3 -2 3 -6 -6 -3 -4 -5 -6 -4 -5 -2 -5 5 -3 0 -6 0 -10 0 -9 1 -9 -3 -4 -2 0 -2 0 -1 -4 0 -9 -5 -9 1 -10 -1 -11 -1 -6 2 -6 5 -2 7 -3 10 -2 2 -1 3 0 1 0 4 -2 8 -1 3 6 4 1 3 8 3 10 1 6 3 5 0 9 0 7 -1 5 -6 3 -6 4 -1 5 6 4 5 3 5 4 9 1 10 0 4 4 3 4 5 10 1 3 z ",
     "KR11140" : "M 477 316 l 0 9 5 5 -1 3 -4 5 -4 5 -5 4 -4 7 -3 4 -4 3 -4 10 -2 -1 -3 -7 -2 -5 -2 1 -1 0 -2 -1 -3 1 0 0 -3 1 -4 2 -5 -5 -6 -3 -10 -3 -4 -1 -3 -1 -2 2 -4 -1 -3 -1 -9 0 -2 2 -4 3 0 -7 1 -4 -2 -2 0 -1 6 -3 6 -4 -1 -2 -2 -5 2 -3 4 -3 9 -1 10 1 9 2 9 -1 8 -1 9 -1 8 0 11 -1 z ",
@@ -33,29 +35,15 @@ var region_dict = {
     "KR11740" : "M 726 320 l 1 7 3 9 0 9 1 9 1 10 1 5 -1 -1 -5 -1 -3 0 -4 2 -11 0 -8 1 -5 6 -4 5 -4 6 -2 4 -1 8 -4 7 -3 2 1 1 -1 2 -6 7 -1 8 -5 -2 -5 -3 -3 -2 -8 -4 -5 -3 -8 -5 -5 -2 0 -7 1 -3 2 -5 0 -8 -4 -4 -4 -2 -6 -2 -7 0 2 -4 2 -5 2 -10 4 -10 1 -1 4 -6 7 -6 5 -3 6 -3 8 -3 4 -1 5 0 11 0 9 -4 7 -5 8 -6 11 -6 11 0 0 7 3 6 z "
 };
 
-const UseSvg = () => {
-    const [region, setRegion] = useState([]);
-    var min=0, max=0;
-    useEffect(()=>{
-        const tData = async ()=>{
-            setRegion(await fetchTestData());
-            /*
-                    this below is not work. should find another way 
-                    useRef hook maybe
-            */
-            // region.forEach((o)=>{
-            //     console.log(o)
-
-            //     Object.keys(o).forEach((k)=>{
-            //         if(k==='pop_sum'){
-            //             min = Math.min(min, o[k])
-            //             max = Math.max(max, o[k])
-            //         }
-            //     })
-            // })
-        }
-        tData();
-    },[]);
+const UseSvg = ({region , category}) => {
+    // console.log(region.length, region[0].length)
+    var min= Number.MAX_VALUE,
+        max = -Number.MAX_VALUE;
+    region.forEach(e=>{
+        console.log(e.length)
+        min = Math.min(min,e.total);
+        max = Math.max(max,e.total);
+    })
     const makeMsg = (name, num) =>{
         var int_num = parseInt(num)
         return (
@@ -65,30 +53,32 @@ const UseSvg = () => {
             </React.Fragment>
         );
     }
-    const coloring = (num) =>{
-        const dvd = 100000;
-        var diff = num -min;
-        var level = parseInt(diff / dvd); 
-        if(level <= 0) return "#ffffff";
-        else if(level === 1) return "#ffd4e3";
-        else if(level === 2) return "#ffbad3";
-        else if(level === 3) return "#ff91b9";
-        else if(level === 4) return "#ff6ea2";
-        else if(level === 5) return "#ff3b82";
-        else return "#ff005d";
+    const coloring = (num,color) =>{
+        const term = (max-min+1) / (6.0);
+        if( num <= min + term) return `hsl(${color}, 100%, 95%)`;
+        else if(num <= min + (term*2)) return `hsl(${color}, 100%, 90%)`;
+        else if(num <= min + (term*3)) return `hsl(${color}, 100%, 80%)`;
+        else if(num <= min + (term*4)) return `hsl(${color}, 100%, 70%)`;
+        else if(num <= min + (term*5)) return `hsl(${color}, 100%, 60%)`;
+        else return `hsl(${color}, 100%, 50%)`;
     }
+    const colorDict = {'red' : 339, 'green' : 129};
+    const reDraw =(
+        region.length ? 
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            {region.map((region)=>
+                        <g key={region.region_name} className={styles.cell}>
+                            <Tooltip title={makeMsg(region.region_name,region.total)} arrow placement="right-end">
+                                <path className={styles.pt} fill={coloring(region.total, colorDict['red'])} d={region_dict[region.region_code]}/>
+                            </Tooltip>
+                        </g>)
+            }
+        </svg> : <div><defalutSvg/></div>
+    )
     return(
         <div className={styles.container}>
-            {/* <h1>여기 어째... </h1> */}
-            <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-                {region.map((region)=>
-                            <g className={styles.cell}>
-                                <Tooltip title={makeMsg(region.region_name,region.pop_sum)} arrow placement="right-end">
-                                    <path className={styles.tess} fill={coloring(region.pop_sum)} d={region_dict[region.region_code]}/>
-                                </Tooltip>
-                            </g>)
-                }
-            </svg>
+            <Typography variant="h4">{category}</Typography>
+            {reDraw}
         </div>
     )
 }

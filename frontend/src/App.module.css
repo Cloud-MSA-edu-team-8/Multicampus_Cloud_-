@@ -10,6 +10,9 @@ body {
     height: 400px;
     width: 400px;
 }
+.img {
+    margin: 20px auto;
+}
 @media (max-width : 770px) {
     .container {
         margin: 0 10%;

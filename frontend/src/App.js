@@ -1,46 +1,58 @@
 import React from 'react';
 import { Posts, MapDraw, VectorLayersExample, Goo_comp, DrawGoogleMap, UseSvg
-        ,Picker } from './components'
+        ,Picker, DrawTable } from './components'
 
-import { fetchDjango, fetchTestData } from './api';
+import { fetchDjango, fetchTestData, fetchBackend } from './api';
 
 import styles from './App.module.css';
+import title_img from './images/title.png';
 
 class App extends React.Component{
     state = {
         posts  : [],
-        tData : [],
+        region : [],
+        category :'',
     };
     async componentDidMount(){
-        const posts = await fetchDjango();
-        this.setState({
-            posts : posts,
-        });
+        // const posts = await fetchDjango();
+        // this.setState({
+        //     posts : posts,
+        // });
     }
-    fetchedTest = async(domain) =>{
-        try{
-            console.log(domain)
-            const tData = await fetchTestData();
-            this.setState({
-                tData : tData
-            });
-        } catch (e) {
 
+    fetchFromBack = async()=>{
+        try{
+            const test = await fetchBackend();
+            console.log(test);
+        } catch (e) {
+            console.log(e);
         }
     }
+    handleCategoryChange = async (e) =>{
+        var category = e.target.value,
+            name = e.nativeEvent.srcElement.innerText;
+        try{
+            const data = await fetchBackend(category);
+            this.setState({
+                region : data,
+                category :name,
+            })
+        }catch(e){
 
+        }
+    };
     render() {
-        const { posts, tData } = this.state; // this is better to use 
+        const { region, category } = this.state; // this is better to use 
         return (
-            <div>
-                <div className ={ styles.container }>
-                    <Picker fetchedTest = {this.fetchedTest}/>
-                    {/* <Goo_comp/> */}
-                    {/* <Posts posts={ posts }/> */}
-                </div>
+            <div className={styles.container}>
+                <img src={title_img} className={styles.img}/>
+                <Picker handleFunc = {this.handleCategoryChange}/>
+                <UseSvg region={region} category = {category}/>
+                {/* <Goo_comp/> */}
+                {/* <Posts posts={ posts }/> */}
                 {/* <MapDraw/> */}
                 {/* <DrawGoogleMap /> */}
-                <UseSvg/>
+                {/* <DrawTable data={region} /> */}
             </div>
         )
     }

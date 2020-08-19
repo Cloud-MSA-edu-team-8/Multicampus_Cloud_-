@@ -1,11 +1,60 @@
 import React , { useState ,useEffect } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Typography } from '@material-ui/core';
-import { fetchTestData } from '../../api';
+import NumberFormat from 'react-number-format';
 
 import styles from './UseSvg.module.css';
 
-import defalutSvg from './seoul.svg';
+const UseSvg = ({region , category}) => {
+    if(!region.length) return (<div>Loading Map...</div>);
+    var min= Number.MAX_VALUE,
+        max = -Number.MAX_VALUE;
+    region.forEach(e=>{
+        min = Math.min(min,e.total);
+        max = Math.max(max,e.total);
+    })
+    const makeMsg = (name, num) =>{
+        var int_num = parseInt(num)
+        return (
+            <React.Fragment>
+                <Typography color="inherit">{name}</Typography>
+                <Typography variant="h5">{category}{' '}
+                    <NumberFormat thousandSeparator={true} value ={int_num} displayType={'text'}/>
+                </Typography>
+            </React.Fragment>
+        );
+    }
+    const coloring = (num,color) =>{
+        const term = (max-min+1) / (6.0);
+        if( num <= min + term) return `hsl(${color}, 100%, 95%)`;
+        else if(num <= min + (term*2)) return `hsl(${color}, 100%, 90%)`;
+        else if(num <= min + (term*3)) return `hsl(${color}, 100%, 80%)`;
+        else if(num <= min + (term*4)) return `hsl(${color}, 100%, 70%)`;
+        else if(num <= min + (term*5)) return `hsl(${color}, 100%, 60%)`;
+        else return `hsl(${color}, 100%, 50%)`;
+    }
+    const colorDict = {'red' : 339, 'green' : 129};
+    const reDraw =(
+        region.length ? 
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            {region.map((region)=>
+                        <g key={region.region_name} className={styles.cell}>
+                            <Tooltip title={makeMsg(region.region_name,region.total)} arrow placement="right-end">
+                                <path className={styles.pt} fill={coloring(region.total, colorDict['red'])} d={region_dict[region.region_code]}/>
+                            </Tooltip>
+                            {/* <Typography variant="h6">{region.region_name}</Typography> */}
+                        </g>)
+            }
+        </svg> : <div><defalutSvg/></div>
+    )
+    return(
+        <div className={styles.container}>
+            <Typography variant="h6">{category}</Typography>
+            {reDraw}
+        </div>
+    )
+}
+
 
 var region_dict = {
     "KR11110" : "M 455 297 l 4 -2 1 0 1 0 3 -1 4 5 7 3 2 6 0 8 -11 2 -11 1 -8 0 -9 1 -8 1 -9 1 -9 -2 -10 -1 -9 1 -4 3 -2 3 -6 -6 -3 -4 -5 -6 -4 -5 -2 -5 5 -3 0 -6 0 -10 0 -9 1 -9 -3 -4 -2 0 -2 0 -1 -4 0 -9 -5 -9 1 -10 -1 -11 -1 -6 2 -6 5 -2 7 -3 10 -2 2 -1 3 0 1 0 4 -2 8 -1 3 6 4 1 3 8 3 10 1 6 3 5 0 9 0 7 -1 5 -6 3 -6 4 -1 5 6 4 5 3 5 4 9 1 10 0 4 4 3 4 5 10 1 3 z ",
@@ -34,53 +83,5 @@ var region_dict = {
     "KR11710" : "M 621 374 l 6 2 4 2 4 4 0 8 -2 5 -1 3 0 7 5 2 8 5 5 3 8 4 3 2 5 3 5 2 -4 3 0 6 -3 10 4 5 5 3 10 0 9 3 5 5 -1 4 -2 7 -3 9 -4 3 -5 4 -5 5 -2 6 -3 7 -5 5 -10 0 -6 0 0 8 -4 5 -6 -2 -2 -1 -1 4 -4 -5 -3 -4 -5 -10 -2 -2 -4 -7 -3 -5 -3 -5 -3 -6 -5 -5 -5 -4 -6 -3 -5 -3 -5 -2 -12 -4 -3 -2 -6 -2 -7 -1 -6 -2 -1 -10 -1 -6 -1 -13 0 -4 0 -10 6 2 5 1 5 1 5 -1 6 -3 8 -5 3 -2 3 -3 11 -12 5 -4 5 -5 4 -5 z ",
     "KR11740" : "M 726 320 l 1 7 3 9 0 9 1 9 1 10 1 5 -1 -1 -5 -1 -3 0 -4 2 -11 0 -8 1 -5 6 -4 5 -4 6 -2 4 -1 8 -4 7 -3 2 1 1 -1 2 -6 7 -1 8 -5 -2 -5 -3 -3 -2 -8 -4 -5 -3 -8 -5 -5 -2 0 -7 1 -3 2 -5 0 -8 -4 -4 -4 -2 -6 -2 -7 0 2 -4 2 -5 2 -10 4 -10 1 -1 4 -6 7 -6 5 -3 6 -3 8 -3 4 -1 5 0 11 0 9 -4 7 -5 8 -6 11 -6 11 0 0 7 3 6 z "
 };
-
-const UseSvg = ({region , category}) => {
-    // console.log(region.length, region[0].length)
-    var min= Number.MAX_VALUE,
-        max = -Number.MAX_VALUE;
-    region.forEach(e=>{
-        console.log(e.length)
-        min = Math.min(min,e.total);
-        max = Math.max(max,e.total);
-    })
-    const makeMsg = (name, num) =>{
-        var int_num = parseInt(num)
-        return (
-            <React.Fragment>
-                <Typography color="inherit">{name}</Typography>
-                <Typography variant="h4">Domain : {int_num} </Typography>
-            </React.Fragment>
-        );
-    }
-    const coloring = (num,color) =>{
-        const term = (max-min+1) / (6.0);
-        if( num <= min + term) return `hsl(${color}, 100%, 95%)`;
-        else if(num <= min + (term*2)) return `hsl(${color}, 100%, 90%)`;
-        else if(num <= min + (term*3)) return `hsl(${color}, 100%, 80%)`;
-        else if(num <= min + (term*4)) return `hsl(${color}, 100%, 70%)`;
-        else if(num <= min + (term*5)) return `hsl(${color}, 100%, 60%)`;
-        else return `hsl(${color}, 100%, 50%)`;
-    }
-    const colorDict = {'red' : 339, 'green' : 129};
-    const reDraw =(
-        region.length ? 
-        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-            {region.map((region)=>
-                        <g key={region.region_name} className={styles.cell}>
-                            <Tooltip title={makeMsg(region.region_name,region.total)} arrow placement="right-end">
-                                <path className={styles.pt} fill={coloring(region.total, colorDict['red'])} d={region_dict[region.region_code]}/>
-                            </Tooltip>
-                        </g>)
-            }
-        </svg> : <div><defalutSvg/></div>
-    )
-    return(
-        <div className={styles.container}>
-            <Typography variant="h4">{category}</Typography>
-            {reDraw}
-        </div>
-    )
-}
 
 export default UseSvg;

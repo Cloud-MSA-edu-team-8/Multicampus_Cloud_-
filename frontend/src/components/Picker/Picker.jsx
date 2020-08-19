@@ -4,10 +4,9 @@ import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 
 import styles from './Picker.module.css';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 350,
+    minWidth: '35vw',
     display:'center',
   },
 }));
@@ -31,30 +30,22 @@ const Picker = ({handleFunc}) =>{
 
   return (
     <div className={styles.container}>
-      <FormControl className={classes.formControl}>
+      <FormControl className={styles.form}>
         <InputLabel id="cat">Select</InputLabel>
-        <Select labelId="cat" id="cat" value={option} defaultValue='' 
+        <Select labelId="cat" id="cat" value={option}
           onChange={(e)=>{handleOption(e);}}
-          open={open} onClose={handleClose} onOpen={handleOpen}
-            >
-          <MenuItem value={'population'}>인구수</MenuItem>
-          <MenuItem value={'children'}>어린이 교통사고</MenuItem>
-          <MenuItem value={'fire'}>화재</MenuItem>
-          <MenuItem value={'flood'}>홍수</MenuItem>
-          <MenuItem value={'alcohol'}>음주운전사고</MenuItem>
-          <MenuItem value={'house'}>부동산</MenuItem>
-        </Select>
-        {/* <Select
-          labelId="test"
-          id="test"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={option}
-          onChange={(e)=>{
-              handleChange(e);
-            }}
-        > */}
+            >
+          <MenuItem value={'population'}>거주 인구 수</MenuItem>
+          <MenuItem value={'crime'}>범죄 발생 건수</MenuItem>    
+          <MenuItem value={'house'}>평당 평균 가격</MenuItem>
+          <MenuItem value={'children'}>어린이 교통사고</MenuItem>
+          <MenuItem value={'fire'}>화재피해</MenuItem>
+          <MenuItem value={'flood'}>홍수피해인원</MenuItem>
+          <MenuItem value={'alcohol'}>음주운전사고</MenuItem>
+        </Select>
       </FormControl>
     </div>
   );

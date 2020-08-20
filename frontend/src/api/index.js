@@ -3,9 +3,9 @@ import axios from 'axios';
 var keys = require('./keys.json')
 const seoul_key = keys['seoul_key']
 
-
 var backend_url = "http://192.168.0.30:8080/api/"
 
+/* Just for test */
 export const fetchDjango = async()=>{
     try{
         const res = await axios.get('http://localhost:8000/api/');

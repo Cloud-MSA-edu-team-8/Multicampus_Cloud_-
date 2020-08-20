@@ -20,11 +20,11 @@ const RadarChart = ({oneRegionData}) =>{
     const columns = Object.keys(oneRegionData);
     var dataOfThat = []
     columns.forEach(c=>{
-        if(c !== 'region_code' && c !== 'region_name')
+        if(c !== 'region_code' || c !== 'region_name')
             dataOfThat.push(oneRegionData[c])
     })
-    const korColumns = columns.filter(c=>{
-        if(c !== 'region_code' && c !== 'region_name')
+    const korColumns = columns.forEach(c=>{
+        if(c !== 'region_code' || c !== 'region_name')
             return columnDict[c]
     })
     // const getOneRegion = regionTotal.filter(r=>{

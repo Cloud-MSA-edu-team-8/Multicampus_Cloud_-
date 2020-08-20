@@ -101,9 +101,6 @@ const DrawTable = ({region, category}) => {
         'for_female' : '여(외국인)',
         'total' : category,
     }
-    region.map((r,i)=> {
-        return r['rank'] = (i+1).toString();
-    })
     const makeNumFomat = (num) =>{
         return (
             <NumberFormat value = {num} thousandSeparator={true} displayType={'text'} />
@@ -144,9 +141,10 @@ const DrawTable = ({region, category}) => {
                         </TableHead>
 
                         <TableBody>
-                            {region.map(row=>{
+                            {region.map((row,i)=>{
                                 return(
                                 <TableRow hover role="checkbox" tabIndex={-1} key= {row.region_code}>
+                                    <TableCell key={'rank'} align={'left'}>{i}</TableCell>
                                     {columns.map((c)=>{
                                         let isNum = Number.isInteger(row[c]);
                                         return(

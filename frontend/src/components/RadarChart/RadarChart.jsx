@@ -14,49 +14,34 @@ const columnDict = {
 }
 
 const RadarChart = ({oneRegionData}) =>{
-    console.log(oneRegionData)
-
     if(!oneRegionData) return <div>지역을 선택하면 Radar가 그려집니다</div>
     const columns = Object.keys(oneRegionData);
-    var dataOfThat = []
-    columns.forEach(c=>{
-        if(c !== 'region_code' || c !== 'region_name')
-            dataOfThat.push(oneRegionData[c])
-    })
-    const korColumns = columns.forEach(c=>{
-        if(c !== 'region_code' || c !== 'region_name')
-            return columnDict[c]
-    })
-    // const getOneRegion = regionTotal.filter(r=>{
-    //     if(r.region_code === specificRegion) return r;
-    // })
-    // const keyOfThat = Object.keys(getOneRegion[0]);
-    // var dataOfThat =[];
-    // keyOfThat.forEach(d=>{
-    //     if(d !== 'region_code' && d !== 'region_name')
-    //         dataOfThat.push(parseInt(getOneRegion[0][d]))
-    // })
-    // console.log(keyOfThat)
-    // console.log(getOneRegion[0])
-    // console.log(dataOfThat)
-    console.log(dataOfThat)
+
+    const parsedColumns = columns.filter(c=>(c !== "region_code" && c !== "region_name"))
+    const dataOfThat = parsedColumns.map(c=>oneRegionData[c])
+    const korColumns = parsedColumns.map(c=>columnDict[c])
+
     const radarData ={
         labels : korColumns,
-        backgroundColor: 'rgba(255, 0, 0, 0.2)',
-        borderColor: 'rgba(255, 0, 0, 1)',
-        pointBorderColor: 'rgba(255, 0, 0, 1)',
-        pointBackgrounColor: 'rgba(255, 0, 0, 1)',
         datasets: [
             {
                 label : oneRegionData.region_name,
+                backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                borderColor: 'rgba(255, 0, 0, 1)',
+                pointBorderColor: 'rgba(255, 0, 0, 1)',
+                pointBackgrounColor: 'rgba(255, 0, 0, 1)',
                 data : dataOfThat
             }
         ]
     }
     return(
-        <Radar
-            data ={radarData}
-        />
+        <React.Fragment>
+            <p> 값 = ( 해당 구의 값 / 25개구 중 최대 값)</p>
+            <Radar
+                data ={radarData}
+            />
+        </React.Fragment>
+
     )
 }
 export default RadarChart;

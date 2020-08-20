@@ -91,8 +91,8 @@ export const fetchOneRegionData = async(region) => {
         const res = await axios.get(specific_url);
         const d = res.data
         const modifiedData = {
-                region_name : d.id,
-                region_code : "KR" + d.area,
+                region_code : d.id,
+                region_name : d.area,
                 population : d.population,
                 flood_vic : d.flood_vic,
                 crime_num : d.crime_num,
@@ -101,7 +101,6 @@ export const fetchOneRegionData = async(region) => {
                 child_car_num : d.child_car_num,
                 alc_car_num : d.alc_car_num,
                 house_price : d.house_price,
-
         }
         return modifiedData;
     } catch (e) {

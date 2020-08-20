@@ -82,7 +82,6 @@ const DrawTable = ({region, category}) => {
 
     var columns = Object.keys(region[0]); 
     columns.shift();
-    columns.unshift('rank');
 
     const columnDict = {
         'rank' : '순위',
@@ -132,6 +131,7 @@ const DrawTable = ({region, category}) => {
 
                         <TableHead className={classes.head}>
                             <TableRow>
+                                <TableCell key={'rank'} align={'left'}>{'순위'}</TableCell>
                                 {columns.map(c=>(
                                     <TableCell key = {c} align={ alignDecision(c) }>
                                         {columnDict[c] ? columnDict[c] : c }
@@ -141,11 +141,11 @@ const DrawTable = ({region, category}) => {
                         </TableHead>
 
                         <TableBody>
-                            {region.map((row,i)=>{
+                            {region.map((row,i)=>{ // # of row
                                 return(
                                 <TableRow hover role="checkbox" tabIndex={-1} key= {row.region_code}>
                                     <TableCell key={'rank'} align={'left'}>{i}</TableCell>
-                                    {columns.map((c)=>{
+                                    {columns.map((c)=>{ // # of col
                                         let isNum = Number.isInteger(row[c]);
                                         return(
                                         <TableCell key={c} align={alignDecision(c)} >

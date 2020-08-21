@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
 
 import styles from './Picker.module.css';
@@ -6,45 +6,37 @@ import styles from './Picker.module.css';
 import {fetchOneRegionData} from '../../api';
 
 const RegionPicker = ({region, handleOneRegionData}) =>{
-    const [option, setOption] = React.useState('');
-    const [open, setOpen] = React.useState(false);
+  const [option, setOption] =useState('');
   
-    const handleClose = () => {
-      setOpen(false);
-    };
-  
-    const handleOpen = () => {
-      setOpen(true);
-    };
-    const handleOption = (event) => {
-      setOption(event.target.value);
-      handleOneRegionData(event.target.value);
-    };
-  
-    var regionDict ={}
-    var regionList = region.map((e)=>{
-        regionDict[e.region_code] = e.region_name;
-        return e.region_code;
-    })
+  // const [oneRegion, setOneRegion] = useState([]);
 
-    
-    return (
-        <div className={styles.container}>
-            <FormControl className={styles.form}>
-                <InputLabel id="cat">지역 선택</InputLabel>
-                <Select labelId="cat" id="cat" value={option}
-                    onChange={(e)=>{handleOption(e);}}
-                    open={open}
-                    onClose={handleClose}
-                    onOpen={handleOpen}
-                >
-                {regionList.map(e=>{
-                    return <MenuItem value={e}>{regionDict[e]}</MenuItem>
-                })}
-                </Select>
-            </FormControl>
-        </div>
-    )
+  // useEffect(()=>{
+  //   const fetchAPI = async () =>{
+  //     setOneRegion(await fetchOneRegionData());
+  //   }
+  //   fetchAPI();
+  // },[setOneRegion])  
+
+  const handleOption = (event) => {
+    setOption(event.target.value);
+    handleOneRegionData(event.target.value);
+  };
+
+  var regionDict ={}
+  var regionList = region.map((e)=>{ 
+      regionDict[e.region_code] = e.region_name;
+      return e.region_code;
+  })
+
+  // value = {option}
+  return (
+          <FormControl className={styles.form}>
+              <InputLabel id="cat">지역 선택</InputLabel>
+              <Select labelId="cat" onChange={(e)=>{handleOneRegionData(e.target.value)}}>
+              {regionList.map(e=><MenuItem value={e}>{regionDict[e]}</MenuItem>)}
+              </Select>
+          </FormControl>
+  )
 }
 export default RegionPicker
 

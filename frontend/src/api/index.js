@@ -19,7 +19,7 @@ export const fetchBackend = async (category) =>{
     // axios.get(backend_url)
     //     .then( res => console.log(res))
     try{
-        const res = await axios.get(backend_url+category+'/');
+        const res = await axios.get(backend_url+category);
         var modifiedData;
         if(category ==='crime'){
             modifiedData = res.data.map((data)=>({

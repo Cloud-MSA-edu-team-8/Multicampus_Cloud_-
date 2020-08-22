@@ -1,6 +1,6 @@
-# django-react
+# React-Django
 
-<del>Backend : Django REST Framework (This will be gone)</del>
+<del>Backend : Django REST Framework(for test) (This will be gone)</del>
 
 [Backend(other repo)](https://github.com/Cloud-MSA-edu-team-8/test_django) : (DRF) 
 
@@ -19,6 +19,10 @@ Frontend : React<br>
 [ ] Sortable table
 [ ] Appendable Radar
 [V] Add Loading circle progress as a component
+
+[ ] React route?
+[ ] Login? 
+[ ] Preference?
 </pre>
 
 #### Backend

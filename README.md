@@ -7,8 +7,8 @@
 Frontend : React<br>
 
 # TODO (Created 2020.08.21)
+#### Frontend
 <pre>
-- Frontend 
 [ ] Make Picker component reusable
 [ ] Naming (convention)
 [V] Header
@@ -19,8 +19,10 @@ Frontend : React<br>
 [ ] Sortable table
 [ ] Appendable Radar
 [V] Add Loading circle progress as a component
+</pre>
 
-- Backend
+#### Backend
+<pre>
 [ ] Make api : district, district code
 [ ] Make api : district, svg d values
 [ ] Make api : district, colorCode (? needed?)

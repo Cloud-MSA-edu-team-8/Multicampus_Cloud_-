@@ -1,9 +1,15 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2';
+import {CircularProgress} from '@material-ui/core';
 
 import styles from './Chart.module.css'
 const Chart = ({region, category}) =>{
-    if(!region.length) return (<div>Loading Chart...</div>);
+    if(!region || !region.length) 
+        return (
+            <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
+                <CircularProgress color="secondary"/>
+                <h5>Loading chart..</h5>
+            </div>);
 
     // to not change original one
     // var sorted = region.concat(); 
@@ -17,11 +23,11 @@ const Chart = ({region, category}) =>{
     region.sort((a,b)=>{
         return b.total - a.total;
     })
-    const columns = region.map((data)=>data.region_name)
+    const columns = region.map(r=>r.region_name)
     const colors = region.map(r=>{
         return colorDict[r.region_code] + 'bb'  // hex color code + with opacity
     })
-    const data = region.map((r)=> r.total)
+    const data = region.map(r=> r.total)
     
     const barChart =(
         region ?(

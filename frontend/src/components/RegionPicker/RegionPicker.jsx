@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import { InputLabel, MenuItem, FormControl, Select, CircularProgress } from '@material-ui/core';
 
 import styles from './Picker.module.css';
 
@@ -7,7 +7,13 @@ import {fetchOneRegionData} from '../../api';
 
 const RegionPicker = ({region, handleOneRegionData}) =>{
   const [option, setOption] =useState('');
-  
+  if(!region || !region.length) 
+  return (
+      <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
+          <CircularProgress color="secondary"/>
+          <h5>Loading data..</h5>
+      </div>);
+
   // const [oneRegion, setOneRegion] = useState([]);
 
   // useEffect(()=>{

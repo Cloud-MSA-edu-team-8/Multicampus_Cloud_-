@@ -8,6 +8,8 @@ Frontend : React<br>
 
 # TODO (Created 2020.08.21)
 <pre>
+[ ] Make Picker component reusable
+[ ] Trimming Names (convention)
 [ ] Header
 [ ] Nav with app bar
 [ ] Footer
@@ -16,4 +18,5 @@ Frontend : React<br>
 [ ] Make api : region, region code
 [ ] Make api : region, svg d values
 [ ] Make api : region, colorCode (? needed?)
+[X] Add Loading circle progress
 </pre>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles'
-import { Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core'
+import { Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow
+        ,CircularProgress } from '@material-ui/core'
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import PropTypes from 'prop-types';
 
@@ -77,7 +78,13 @@ const stableSort = (array, comparator) => {
 
 const DrawTable = ({region, category}) => {
     const classes = useStyles(); 
-    if(!region.length) return (<div>Loading Table...</div>);
+    if(!region || !region.length) 
+    return (
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
+            <CircularProgress color="secondary"/>
+            <h5>Loading table..</h5>
+        </div>);
+
 
 
     var columns = Object.keys(region[0]); 

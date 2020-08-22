@@ -1,12 +1,18 @@
 import React , { useState ,useEffect } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
-import { Typography } from '@material-ui/core';
+import { Typography, CircularProgress } from '@material-ui/core';
 import NumberFormat from 'react-number-format';
 
 import styles from './UseSvg.module.css';
 
 const UseSvg = ({region , category}) => {
-    if(!region.length) return (<div>Loading Map...</div>);
+    if(!region || !region.length) 
+    return (
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
+            <CircularProgress color="secondary"/>
+            <h5>Loading map..</h5>
+        </div>);
+
     var min= Number.MAX_VALUE,
         max = -Number.MAX_VALUE;
     region.forEach(e=>{

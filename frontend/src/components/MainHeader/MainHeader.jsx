@@ -56,7 +56,7 @@ const MainHeader = () => {
                             onChange={handleChange}
                             indicatorColor="primary"
                             textColor="inherit"
-                            variant="scrollable"
+                            variant="standard"
                             centered
                             >
                             <Tab label={makeLabel("전체")} />

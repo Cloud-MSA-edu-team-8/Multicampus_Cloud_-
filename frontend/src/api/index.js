@@ -110,10 +110,10 @@ export const fetchOneRegionData = async(region) => {
 }
 export const fetchTestData = async()=>{
     try{
-        const res = await axios.get(`http://openapi.seoul.go.kr:8088/${seoul_key}/json/SPOP_DAILYSUM_JACHI/1/60/`);
+        const res = await axios.get(`http://openapi.seoul.go.kr:8088/${seoul_key}/json/SPOP_DAILYSUM_JACHI/1/15/`);
         const modData = res.data.SPOP_DAILYSUM_JACHI.row.map((data)=>({
-            region_name : data.SIGNGU_NM,
             region_code : "KR" + data.SIGNGU_CODE_SE,
+            region_name : data.SIGNGU_NM,
             total : data.TOT_LVPOP_CO,
         }))
         return modData;

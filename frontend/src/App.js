@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseSvg,Picker, DrawTable, Chart,MainHeader ,RadarChart, RegionPicker } from './components'
 
-import { fetchDjango, fetchBackend, fetchOneRegionData } from './api';
+import { fetchTestData, fetchDjango, fetchBackend, fetchOneRegionData } from './api';
 
 import styles from './App.module.css';
 
@@ -32,8 +32,20 @@ class App extends React.Component{
         }
     }
     handleCategoryChange = async (e) =>{
-        var category = e.target.value,
-            name = e.nativeEvent.srcElement.innerText;
+        const category = e.target.value,
+                name = e.nativeEvent.srcElement.innerText;
+        if(category === 'test') {
+            try{
+                const data =await fetchTestData();
+                console.log(data);
+                this.setState({
+                    region : data,
+                    category : name,
+                })
+            }catch(e){
+                
+            }
+        }else{
         try{
             const data = await fetchBackend(category);
             this.setState({
@@ -42,6 +54,7 @@ class App extends React.Component{
             })
         }catch(e){
             console.log(e)
+        }
         }
     };
     handleOneRegionData = async (regionCodeWithKR) =>{
@@ -63,13 +76,7 @@ class App extends React.Component{
                 <Picker handleFunc = {this.handleCategoryChange}/>
                 <UseSvg region={region} category = {category}/>
                 <Chart region={region} category = {category}/>
-                {/* <Goo_comp/> */}
-                {/* <Posts posts={ posts }/> */}
-                {/* <MapDraw/> */}
-                {/* <DrawGoogleMap /> */}
                 <DrawTable region={region} category = {category} />
-
-                <h2>Test </h2>
 
                 <RegionPicker region = {region} handleOneRegionData={this.handleOneRegionData}/>
                 <RadarChart oneRegionData = {oneRegionData}/>

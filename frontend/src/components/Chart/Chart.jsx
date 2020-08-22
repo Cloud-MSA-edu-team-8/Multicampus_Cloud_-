@@ -3,13 +3,9 @@ import { Bar } from 'react-chartjs-2';
 import {CircularProgress} from '@material-ui/core';
 
 import styles from './Chart.module.css'
+import Loading from '../Loading/Loading';
 const Chart = ({region, category}) =>{
-    if(!region || !region.length) 
-        return (
-            <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
-                <CircularProgress color="secondary"/>
-                <h5>Loading chart..</h5>
-            </div>);
+    if(!region || !region.length) return <Loading which="chart"/>
 
     // to not change original one
     // var sorted = region.concat(); 

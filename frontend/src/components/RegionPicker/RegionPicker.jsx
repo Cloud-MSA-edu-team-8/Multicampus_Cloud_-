@@ -4,15 +4,11 @@ import { InputLabel, MenuItem, FormControl, Select, CircularProgress } from '@ma
 import styles from './Picker.module.css';
 
 import {fetchOneRegionData} from '../../api';
+import Loading from '../Loading/Loading';
 
 const RegionPicker = ({region, handleOneRegionData}) =>{
   const [option, setOption] =useState('');
-  if(!region || !region.length) 
-  return (
-      <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
-          <CircularProgress color="secondary"/>
-          <h5>Loading data..</h5>
-      </div>);
+  if(!region || !region.length) return <Loading which="data"/>
 
   // const [oneRegion, setOneRegion] = useState([]);
 

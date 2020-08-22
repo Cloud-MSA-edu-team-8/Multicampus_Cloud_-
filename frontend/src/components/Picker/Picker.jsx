@@ -49,6 +49,7 @@ const Picker = ({region, handleFunc}) =>{
           	<MenuItem value={'fire'}>화재피해</MenuItem>
           	<MenuItem value={'flood'}>홍수피해인원</MenuItem>
           	<MenuItem value={'alcohol'}>음주운전사고</MenuItem>
+			<MenuItem value={'test'}>TEST</MenuItem>
         	</Select>
       	</FormControl>
     	</div>

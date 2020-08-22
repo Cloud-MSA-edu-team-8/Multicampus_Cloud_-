@@ -11,3 +11,5 @@ export {default as RadarChart} from './RadarChart/RadarChart'
 export {default as MainHeader} from './MainHeader/MainHeader'
 
 export {default as RegionPicker} from './RegionPicker/RegionPicker'
+
+export {default as Loading} from './Loading/Loading'

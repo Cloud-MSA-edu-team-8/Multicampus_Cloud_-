@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
 
 import styles from './DrawTable.module.css';
+import Loading from '../Loading/Loading';
 
 const useStyles = makeStyles({
     tableContainer: {
@@ -78,12 +79,9 @@ const stableSort = (array, comparator) => {
 
 const DrawTable = ({region, category}) => {
     const classes = useStyles(); 
-    if(!region || !region.length) 
-    return (
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
-            <CircularProgress color="secondary"/>
-            <h5>Loading table..</h5>
-        </div>);
+    if(!region || !region.length){
+        return <Loading which ="table"/>
+    }
 
 
 
@@ -151,7 +149,7 @@ const DrawTable = ({region, category}) => {
                             {region.map((row,i)=>{ // # of row
                                 return(
                                 <TableRow hover role="checkbox" tabIndex={-1} key= {row.region_code}>
-                                    <TableCell key={'rank'} align={'left'}>{i}</TableCell>
+                                    <TableCell key={'rank'} align={'left'}>{i+1}</TableCell>
                                     {columns.map((c)=>{ // # of col
                                         let isNum = Number.isInteger(row[c]);
                                         return(

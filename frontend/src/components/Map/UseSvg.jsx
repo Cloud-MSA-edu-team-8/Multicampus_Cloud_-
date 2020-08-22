@@ -4,15 +4,11 @@ import { Typography, CircularProgress } from '@material-ui/core';
 import NumberFormat from 'react-number-format';
 
 import styles from './UseSvg.module.css';
+import Loading from '../Loading/Loading';
 
 const UseSvg = ({region , category}) => {
-    if(!region || !region.length) 
-    return (
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: "column" }}>
-            <CircularProgress color="secondary"/>
-            <h5>Loading map..</h5>
-        </div>);
-
+    if(!region || !region.length) return <Loading which="map"/>
+    
     var min= Number.MAX_VALUE,
         max = -Number.MAX_VALUE;
     region.forEach(e=>{

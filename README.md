@@ -15,8 +15,9 @@ Frontend : React<br>
 [ ] Footer
 [ ] Sortable table
 [ ] Appendable Radar
-[ ] Make api : region, region code
-[ ] Make api : region, svg d values
-[ ] Make api : region, colorCode (? needed?)
-[X] Add Loading circle progress
+[ ] Make api : district, district code
+[ ] Make api : district, svg d values
+[ ] Make api : district, colorCode (? needed?)
+[ ] Make api : districts (https://covid19.mathdro.id/api/countries)
+[X] Add Loading circle progress as a component
 </pre>

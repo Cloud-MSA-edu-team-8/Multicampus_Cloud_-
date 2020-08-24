@@ -14,13 +14,19 @@ const useStyles = makeStyles({
     tableContainer: {
       maxHeight: 440,
     },
-    head: {
-        backgroundColor : "'black'",
-        color :"white",
-
-    }
+    visuallyHidden: {
+        border: 0,
+        clip: 'rect(0 0 0 0)',
+        height: 1,
+        margin: -1,
+        overflow: 'hidden',
+        padding: 0,
+        position: 'absolute',
+        top: 20,
+        width: 1,
+      },
 });
-
+var columns = null;
 const descendingComparator = (a, b, orderBy) =>{
     return b[orderBy] - a[orderBy];
 }
@@ -42,6 +48,10 @@ const stableSort = (array, comparator) => {
     return stabilizedThis.map((el) => el[0]);
 }
 
+
+const alignDecision = (c)=>{
+    return c ==='region_name' || c === 'rank' ? 'left' :'right'
+}
 // const EnhancedTableHead = (props) => {
 //     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
 //     const createSortHandler = (property) => (event) => {
@@ -76,65 +86,112 @@ const stableSort = (array, comparator) => {
 //       </TableHead>
 //     );
 // }
+const columnDict = {
+    'rank' : '순위',
+    'region_name' : '지역구',
+    'murder' : '살인',
+    'robber' : '강도',
+    'rape': '강간',
+    'theft':'절도',
+    'violence' : '폭력',
+    'arr_total' : '검거횟수',
+    'arrest' : '검거율',
+    'household' :'가구수',
+    'total_male' : '남(전체)',
+    'total_female' : '여(전체)',
+    'for_male' : '남(외국인)',
+    'for_female' : '여(외국인)',
+    'total' : '값',
+}
+const SortableTableHead = (props) =>{
+    const { classes, order, orderBy, onRequestSort } = props;
+    const createSortHandler = (property) =>(event) =>{
+        onRequestSort(event, property);
+    };
+    return (
+        <TableHead>
+            <TableRow>
+                <TableCell key={'rank'} align={'left'}>{'순위'}</TableCell>
+                {columns.map(c=>(
+                    <TableCell 
+                        key = {c} 
+                        align={ alignDecision(c) } 
+                        sortDirection = {orderBy === c ? order : false}>
+                        <TableSortLabel
+                            active={orderBy === c}
+                            direction={orderBy ===c ? order :'asc'}
+                            onClick={createSortHandler(c)}
+                        >
+                        {columnDict[c] ? columnDict[c] : c }
+                        {orderBy === c ? (
+                            <span className = {classes.visuallyHidden}>
+                                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                            </span>
+                        ):null}
+                        </TableSortLabel>
+                    </TableCell>
+                ))}
+            </TableRow>
+        </TableHead>
+    )
+}
 
+SortableTableHead.propTypes = {
+    classes: PropTypes.object.isRequired,
+    onRequestSort: PropTypes.func.isRequired,
+    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+    orderBy: PropTypes.string.isRequired,
+}
 const DrawTable = ({region, category}) => {
-    const classes = useStyles(); 
+    const classes = useStyles();
+
+    const [order, setOrder] = React.useState('asc');
+    const [orderBy, setOrderBy] = React.useState('rank');
+
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
+
+
     if(!region || !region.length){
         return <Loading which ="table"/>
     }
 
-
-
-    var columns = Object.keys(region[0]); 
+    columns = Object.keys(region[0]); 
     columns.shift();
 
-    const columnDict = {
-        'rank' : '순위',
-        'region_name' : '지역구',
-        'murder' : '살인',
-        'robber' : '강도',
-        'rape': '강간',
-        'theft':'절도',
-        'violence' : '폭력',
-        'arr_total' : '검거횟수',
-        'arrest' : '검거율',
-        'household' :'가구수',
-        'total_male' : '남(전체)',
-        'total_female' : '여(전체)',
-        'for_male' : '남(외국인)',
-        'for_female' : '여(외국인)',
-        'total' : category,
-    }
     const makeNumFomat = (num) =>{
-        return (
-            <NumberFormat value = {num} thousandSeparator={true} displayType={'text'} />
-        )
+        return <NumberFormat value = {num} thousandSeparator={true} displayType={'text'} />
     }
-
-
-    const alignDecision = (c)=>{
-        return c ==='region_name' || c === 'rank' ? 'left' :'right'
-    }
-
-//     <EnhancedTableHead
-//     classes={classes}
-//     numSelected={selected.length}
-//     order={order}
-//     orderBy={orderBy}
-//     onSelectAllClick={handleSelectAllClick}
-//     onRequestSort={handleRequestSort}
-//     rowCount={rows.length}
-//   />
 
     // make dict and assign that to columns arr
     // to Make beautiful column name
     return(
-        <div >
+        <div>
+        {/* <div>
+            <SortableTableHead
+              classes={classes}
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+              columns = {columns}
+              />
+        </div> */}
+
+        <div>
             <Paper className={styles.container}>
                 <TableContainer className={classes.tableContainer}>
                     <Table stickyHeader aria-label="sticky table">
-
-                        <TableHead className={classes.head}>
+                    <SortableTableHead
+                        classes={classes}
+                        order={order}
+                        orderBy={orderBy}
+                        onRequestSort={handleRequestSort}
+                        // columns = {columns}
+                        />
+                        {/* <TableHead className={classes.head}>
                             <TableRow>
                                 <TableCell key={'rank'} align={'left'}>{'순위'}</TableCell>
                                 {columns.map(c=>(
@@ -143,28 +200,31 @@ const DrawTable = ({region, category}) => {
                                     </TableCell>
                                 ))}
                             </TableRow>
-                        </TableHead>
+                        </TableHead> */}
 
                         <TableBody>
-                            {region.map((row,i)=>{ // # of row
-                                return(
-                                <TableRow hover role="checkbox" tabIndex={-1} key= {row.region_code}>
-                                    <TableCell key={'rank'} align={'left'}>{i+1}</TableCell>
-                                    {columns.map((c)=>{ // # of col
-                                        let isNum = Number.isInteger(row[c]);
-                                        return(
-                                        <TableCell key={c} align={alignDecision(c)} >
-                                            { isNum ? makeNumFomat(row[c]) : row[c]}
-                                        </TableCell>
-                                        );
-                                    })}
-                                </TableRow>
-                                );
-                            })}
+                            {stableSort(region, getComparator(order,orderBy))
+                                .map((row,i)=>{ // # of row
+                                    return(
+                                    <TableRow hover tabIndex={-1} key= {row.region_code}>
+                                        <TableCell key={'rank'} align={'left'}>{i+1}</TableCell>
+                                        {columns.map((c)=>{ // # of col
+                                            let isNum = Number.isInteger(row[c]);
+                                            return(
+                                            <TableCell key={c} align={alignDecision(c)} >
+                                                { isNum ? makeNumFomat(row[c]) : row[c]}
+                                            </TableCell>
+                                            );
+                                        })}
+                                    </TableRow>
+                                    );
+                                })
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
+        </div>
         </div>
     )
     

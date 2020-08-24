@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { InputLabel, MenuItem, FormControl, Select, CircularProgress } from '@material-ui/core';
+import { InputLabel, MenuItem, FormControl, Select} from '@material-ui/core';
 
 import styles from './Picker.module.css';
 
@@ -21,7 +21,7 @@ const RegionPicker = ({region, handleOneRegionData}) =>{
 
   const handleOption = (event) => {
     setOption(event.target.value);
-    handleOneRegionData(event.target.value);
+    handleOneRegionData(event);
   };
 
   var regionDict ={}
@@ -30,7 +30,6 @@ const RegionPicker = ({region, handleOneRegionData}) =>{
       return e.region_code;
   })
 
-  // value = {option}
   return (
           <FormControl className={styles.form}>
               <InputLabel id="cat">지역 선택</InputLabel>
@@ -41,23 +40,3 @@ const RegionPicker = ({region, handleOneRegionData}) =>{
   )
 }
 export default RegionPicker
-
-{/* <div className={styles.container}>
-<FormControl className={styles.form}>
-  <InputLabel id="cat">Select</InputLabel>
-  <Select labelId="cat" id="cat" value={option}
-    onChange={(e)=>{handleOption(e);}}
-    open={open}
-    onClose={handleClose}
-    onOpen={handleOpen}
-      >
-    <MenuItem value={'population'}>거주 인구 수</MenuItem>
-    <MenuItem value={'crime'}>범죄 발생 건수</MenuItem>    
-    <MenuItem value={'house'}>평당 평균 가격</MenuItem>
-    <MenuItem value={'children'}>어린이 교통사고</MenuItem>
-    <MenuItem value={'fire'}>화재피해</MenuItem>
-    <MenuItem value={'flood'}>홍수피해인원</MenuItem>
-    <MenuItem value={'alcohol'}>음주운전사고</MenuItem>
-  </Select>
-</FormControl>
-</div> */}

@@ -35,12 +35,18 @@ const RadarChart = ({oneRegionData}) =>{
         ]
     }
     return(
-        <React.Fragment>
+        <div className={styles.container}>
             <p> 값 = ( 해당 구의 값 / 25개구 중 최대 값)</p>
             <Radar
                 data ={radarData}
+                // width={"400"}
+                // height={"400"}
+                // options={{
+                //     // responsive:true,
+                //     maintainAspectRatio:false,
+                // }}
             />
-        </React.Fragment>
+        </div>
 
     )
 }

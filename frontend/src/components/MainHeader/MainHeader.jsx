@@ -1,36 +1,16 @@
 import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import {AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
+import { Tab, Tabs } from '@material-ui/core';
 
 import title_img from '../../images/title_200_47.png';
 
 import styles from './MainHeader.module.css';
 
-import { makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
-
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-
 const useStyles = makeStyles((theme)=>({
     appBar :{
         background: '#21232a',
     },
-    title: {
-        flexGrow :1,
-    },
-    top_most_bar: {
-        // width : "100%",
-    },
-
-    toolBar :{
-        // borderRadius : 16,
-    }
 }));
 
 const MainHeader = () => {
@@ -38,7 +18,8 @@ const MainHeader = () => {
     const [value, setValue] = useState(0);
   
     const handleChange = (event, newValue) => {
-      setValue(newValue);
+        setValue(newValue);
+        console.log(newValue);
     };
     const makeLabel = (label) =>{
         return <Typography variant="h6">{label}</Typography>
@@ -46,10 +27,23 @@ const MainHeader = () => {
     return(
         <div className={styles.container}>
             <AppBar className={classes.appBar} position='fixed'>
-                <div className={styles.title_words}>어디살래...?? 뭐라고 써야될까 문과야.. 도와줘</div>
+                <div className={styles.title_words}>고정관념은 버려라! 과연 그 동네는 안전할 것인가?</div>
                 <div className={styles.toolbarWrap}>
                     <a className={styles.a} href=""><img className={styles.img} src={title_img} /></a>
-                    <Toolbar className = {classes.toolBar}>
+                    {/* <div>
+                        <nav className={styles.navbar}>
+                            <a href="#start-point">
+                                Test0<i></i>
+                            </a>
+                            <a href="#dist-picker">
+                                Test1<i></i>
+                            </a>
+                            <a href="#dist-picker">
+                                Test2<i></i>
+                            </a>
+                        </nav>
+                    </div> */}
+                    <Toolbar>
                             <Tabs
                             className={styles.tabs}
                             value={value}
@@ -59,8 +53,8 @@ const MainHeader = () => {
                             variant="standard"
                             centered
                             >
-                            <Tab label={makeLabel("전체")} />
-                            <Tab label={makeLabel("구별")} />
+                            <a href="#start-point"><Tab label={makeLabel("전체")}/></a>
+                            <a href="#dist-picker"><Tab label={makeLabel("구별")}/></a>
                             <Tab label={makeLabel("??? 뭐할까")} />
                             </Tabs>
                     </Toolbar>

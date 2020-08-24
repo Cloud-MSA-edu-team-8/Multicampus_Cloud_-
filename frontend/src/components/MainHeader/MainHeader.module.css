@@ -4,8 +4,13 @@
     align-items: center; 
     flex-direction: column;
 }
-.nav{
-    display: flex;
+
+.navbar a{
+    /* display: flex; */
+    color : inherit;
+    text-decoration: none;
+    padding : 1rem;
+    font-size : 200%;
 }
 .loginBtn{
     margin-left: 5vw;
@@ -42,10 +47,13 @@
     margin : 2vh 0;
     color : white;
     text-align: center;
-    font-size :200%;
+    font-size :150%;
 }
-.tabs {
+.tabs a{
     /* margin: 0 20vw; */
+    text-decoration: none;
+    color : inherit;
+
 }
 @media (max-width : 770px) {
     .container {

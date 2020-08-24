@@ -108,6 +108,20 @@ export const fetchOneRegionData = async(region) => {
     }
     
 }
+
+export const fetchRegionDraw = async() =>{
+    try{
+        const res = await axios.get(backend_url + 'svgd/')
+        const modifiedData = res.data.map((d)=>({
+            region_code : "KR" + d.id,
+            district_color : d.colour +"bb",
+            svgd : d.location,
+        }))
+        return modifiedData;
+    } catch (e){
+        console.log(e)
+    }
+}
 export const fetchTestData = async()=>{
     try{
         const res = await axios.get(`http://openapi.seoul.go.kr:8088/${seoul_key}/json/SPOP_DAILYSUM_JACHI/1/15/`);

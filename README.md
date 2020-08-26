@@ -9,26 +9,32 @@ Frontend : React<br>
 # TODO (Created 2020.08.21)
 #### Frontend
 <pre>
-[ ] Make Picker component reusable
-[ ] Naming (convention)
+[V] Make Picker component reusable
+[V] Add Loading circle progress as a component
+[V] Sortable table
+[V] Nav with app bar
 [V] Header
 [V] Header CSS work
-[V] Nav with app bar
+[V] Footer
+[ ] Naming (convention)
+[ ] Tab moving 
 [ ] Nav with app bar CSS work
-[ ] Footer
-[ ] Sortable table
-[ ] Appendable Radar
-[V] Add Loading circle progress as a component
+[ ] Show Radar can compare
 
-[ ] React route?
+[ ] React route
+[ ] Material-ui tabs as nav
 [ ] Login? 
 [ ] Preference?
+[ ] Redux
 </pre>
 
 #### Backend
 <pre>
+Will redesign the DB
+<del>
+[V] Make api : district, colorCode (? needed?)
+[V] Make api : district, svg d values
 [ ] Make api : district, district code
-[ ] Make api : district, svg d values
-[ ] Make api : district, colorCode (? needed?)
 [ ] Make api : districts (will look like (https://covid19.mathdro.id/api/countries).)
+</del>
 </pre>

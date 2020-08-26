@@ -11,7 +11,7 @@ class App extends React.Component{
     state = {
         region : [],
         category :'',
-        oneRegionData : null,
+        regionDatasets : [],
         drawData : [],
     };
     async componentDidMount(){
@@ -58,26 +58,26 @@ class App extends React.Component{
     handleOneRegionData = async (e) =>{
         const regionCodeWithKR = e.target.value
         try{
-            const oneRegionData = await fetchOneRegionData(regionCodeWithKR);
+            const regionDataset = await fetchOneRegionData(regionCodeWithKR);
             this.setState({
-                oneRegionData
+                regionDatasets : this.state.regionDatasets.concat(regionDataset)
             });
         } catch (error) {
             console.log(error);
         }
     }
     render() {
-        const { region, category, oneRegionData, drawData } = this.state; // this is better to use 
+        const { region, category, regionDatasets, drawData } = this.state; // this is better to use 
 
         return (
             <div className={styles.container} id='start-point'>
                 <MainHeader/>
-                <Picker handlePickerFunction={this.handleCategoryChange} name ='all'/>
+                <Picker handlePickerFunction={this.handleCategoryChange}/>
                 <UseSvg region={region} category={category} drawData={drawData} />
                 <Chart regions={region} category={category} drawData={drawData} />
                 <DrawTable region={region} category={category}/>
-                <Picker regions={region} handlePickerFunction={this.handleOneRegionData} name='oneRegion'/>
-                <RadarChart oneRegionData={oneRegionData}/>
+                <Picker regions={region} handlePickerFunction={this.handleOneRegionData}/>
+                <RadarChart regionDatasets={regionDatasets} drawData={drawData}/>
                 <Footer/>
             </div>
         )

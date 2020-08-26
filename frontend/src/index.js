@@ -3,4 +3,16 @@ import ReactDOM from 'react-dom'
 
 import App from './App'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    typography :{
+        fontFamily: 'Jua, Russo One, sans-serif'
+    },
+});
+
+ReactDOM.render(
+    <MuiThemeProvider theme={theme}>
+        <App />
+    </MuiThemeProvider>
+    , document.getElementById('root'))

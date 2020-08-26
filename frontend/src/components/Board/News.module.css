@@ -1,12 +1,17 @@
 .container{
-    margin : 1rem;
-    align-items: flex-start;
-    
+    margin-top : 2vh;
+    margin-bottom : 1vh;
+    align-items: center;
+    width: 70vw;
+    margin : auto auto;
 }
 .li {
 
 }
-.li a{
+.li a, .a{
     text-decoration: none;
     color : black;
+}
+.liItem:hover{
+    background : #c0c0c0;
 }

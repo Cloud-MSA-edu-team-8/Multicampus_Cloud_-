@@ -16,6 +16,7 @@ const Picker = ({regions, handlePickerFunction}) =>{
 		})
 		oneRegionPicker = (
 			<div id="dist-picker">
+				<h1 className={styles.container}>구별</h1>
 				<FormControl className={styles.form}>
 					<InputLabel id="reg">지역 선택</InputLabel>
 					<Select labelId="reg" onChange={(e)=>{handlePickerFunction(e)}}>

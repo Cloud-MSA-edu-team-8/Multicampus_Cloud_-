@@ -27,10 +27,11 @@ const RadarChart = ({regionDatasets, drawData}) =>{
     })
 
     const dataSets = regionDatasets.map(regionsDataset=>{
-        let regionCode = "KR" + regionsDataset.region_code;
+        let regionCode = "KR" + regionsDataset.region_code,
+            changeOpacity = colorCodes[regionCode].replace(/bb/g, '66')
         return {
             label : regionsDataset.region_name,
-            backgroundColor: colorCodes[regionCode],
+            backgroundColor: changeOpacity,
             borderColor: colorCodes[regionCode],
             pointBorderColor: colorCodes[regionCode],
             pointBackgrounColor: colorCodes[regionCode],

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
 import { Tab, Tabs } from '@material-ui/core';
+// import { Route,BrowserRouter, Switch, Link } from 'react-router-dom';
 
 import title_img from '../../images/title_200_47.png';
 
@@ -24,6 +25,14 @@ const MainHeader = () => {
     const makeLabel = (label) =>{
         return <Typography variant="h6">{label}</Typography>
     }
+    const navItems=[
+        {
+            target : "all"
+        },
+        {
+            target : "oneRegion"
+        }
+    ]
     return(
         <div className={styles.container}>
             <AppBar className={classes.appBar} position='fixed'>
@@ -31,7 +40,7 @@ const MainHeader = () => {
                 <div className={styles.toolbarWrap}>
                     <a className={styles.a} href=""><img className={styles.img} src={title_img} /></a>
                     {/* <div>
-                        <nav className={styles.navbar}>
+                        <nav clssName={styles.navbar}>
                             <a href="#start-point">
                                 Test0<i></i>
                             </a>
@@ -44,6 +53,7 @@ const MainHeader = () => {
                         </nav>
                     </div> */}
                     <Toolbar>
+                        {/* <BrowserRouter> */}
                             <Tabs
                             className={styles.tabs}
                             value={value}
@@ -53,10 +63,17 @@ const MainHeader = () => {
                             variant="standard"
                             centered
                             >
-                            <a href="#start-point"><Tab label={makeLabel("전체")}/></a>
-                            <a href="#dist-picker"><Tab label={makeLabel("구별")}/></a>
+                            <Tab label={makeLabel("전체")}><a href="dist-picker">저체</a></Tab>
+                            <Tab label={makeLabel("구별")}/>
+                            {/* <Tab label={makeLabel("전체")} to="/" component={Link}/>
+                            <Tab label={makeLabel("구별")} to="/dist-picker"component={Link}/> */}
                             <Tab label={makeLabel("??? 뭐할까")} />
                             </Tabs>
+                            {/* <Switch>
+                                <Route exact path="/" component={Picker}/>
+                                <Route path="/dist-picker" component={makeLabel("구별")}/>
+                            </Switch>
+                        </BrowserRouter> */}
                     </Toolbar>
                     <Button className={styles.loginBtn} color="inherit">Login</Button>
                 </div>

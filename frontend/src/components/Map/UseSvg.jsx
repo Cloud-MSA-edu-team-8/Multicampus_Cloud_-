@@ -7,12 +7,14 @@ import styles from './UseSvg.module.css';
 import Loading from '../Loading/Loading';
 
 const UseSvg = ({region , category, drawData}) => {
+
+    if(!region || !region.length|| !drawData) return <Loading which="map"/>
+    
     var region_dict = {}
     drawData = drawData.map((e)=>{
         region_dict[e.region_code] = e.svgd
     })
-    if(!region || !region.length) return <Loading which="map"/>
-    
+
     var min= Number.MAX_VALUE,
         max = -Number.MAX_VALUE;
     region.forEach(e=>{
@@ -22,12 +24,12 @@ const UseSvg = ({region , category, drawData}) => {
     const makeMsg = (name, num) =>{
         var int_num = parseInt(num)
         return (
-            <React.Fragment>
+            <>
                 <Typography color="inherit">{name}</Typography>
                 <Typography variant="h5">{category}{' '}
                     <NumberFormat thousandSeparator={true} value ={int_num} displayType={'text'}/>
                 </Typography>
-            </React.Fragment>
+            </>
         );
     }
     const coloring = (num,color) =>{

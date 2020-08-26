@@ -1,7 +1,8 @@
 import React from 'react';
-import { UseSvg,Picker, DrawTable, Chart,MainHeader ,RadarChart, RegionPicker, Loading } from './components'
+import { UseSvg,Picker, DrawTable, Chart, MainHeader
+        ,RadarChart, RegionPicker, Loading, Footer } from './components'
 
-import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDraw} from './api';
+import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDraw } from './api';
 
 import styles from './App.module.css';
 
@@ -15,11 +16,12 @@ class App extends React.Component{
     };
     async componentDidMount(){
         try{
+            // const regions = await fetchTestData();
             const regions = await fetchBackend('population');
             const drawData = await fetchRegionDraw();
             this.setState({
                 region : regions,
-                category : '거주 인구 수',
+                category : '거주 인구 수', // default
                 drawData,
             })
         }catch(e){
@@ -27,14 +29,6 @@ class App extends React.Component{
         }
     }
 
-    fetchFromBack = async() => {
-        try{
-            const test = await fetchBackend();
-            console.log(test);
-        } catch (e) {
-            console.log(e);
-        }
-    }
     handleCategoryChange = async (e) =>{
         const category = e.target.value,
                 name = e.nativeEvent.srcElement.innerText;
@@ -73,23 +67,18 @@ class App extends React.Component{
         }
     }
     render() {
-        const { region, category, oneRegionData, drawData} = this.state; // this is better to use 
+        const { region, category, oneRegionData, drawData } = this.state; // this is better to use 
 
         return (
             <div className={styles.container} id='start-point'>
                 <MainHeader/>
-            {drawData ? (
-                <React.Fragment>
-                <Picker handlePickerFunction={this.handleCategoryChange}/>
+                <Picker handlePickerFunction={this.handleCategoryChange} name ='all'/>
                 <UseSvg region={region} category={category} drawData={drawData} />
                 <Chart regions={region} category={category} drawData={drawData} />
                 <DrawTable region={region} category={category}/>
-                <Picker regions={region} handlePickerFunction={this.handleOneRegionData}/>
+                <Picker regions={region} handlePickerFunction={this.handleOneRegionData} name='oneRegion'/>
                 <RadarChart oneRegionData={oneRegionData}/>
-                </React.Fragment>
-                )
-                : <Loading which="data"/>
-                }
+                <Footer/>
             </div>
         )
     }

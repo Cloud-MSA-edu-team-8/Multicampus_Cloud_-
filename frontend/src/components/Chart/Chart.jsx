@@ -5,7 +5,7 @@ import styles from './Chart.module.css'
 import Loading from '../Loading/Loading';
 
 const Chart = ({regions, category, drawData}) =>{
-    if(!regions || !regions.length) return <Loading which="chart"/>
+    if(!regions || !regions.length|| !drawData) return <Loading which="chart"/>
     regions.sort((a,b)=>{
         return b.total - a.total;
     })

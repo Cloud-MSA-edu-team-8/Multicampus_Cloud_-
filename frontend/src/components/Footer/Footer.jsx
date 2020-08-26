@@ -5,14 +5,12 @@ import { Typography, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme)=>({
     container :{
         background: '#21232a',
-        flexDirection:'column',
         color:'white',
-        position:'sticky',
         width:'100vw',
-        marginTop:'30vh',
+        marginTop:'50vh',
         textAlign:'center',
-        padding:'1rem',
-
+        padding:'3rem',
+        flexShrink: 0,
     },
     aTag:{
         alignItems:'center',

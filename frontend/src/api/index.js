@@ -123,6 +123,18 @@ export const fetchRegionDraw = async() =>{
         console.log(e)
     }
 }
+export const fetchNewsData = async () =>{
+    try{
+        const res = await axios.get(backend_url+'news/')
+        const newsData = res.data.map(data=>({
+            title : data.title,
+            link : data.link,
+        }))
+        return newsData
+    } catch (e) {
+        console.log(e)
+    }
+}
 export const fetchTestData = async()=>{
     try{
         const res = await axios.get(`http://openapi.seoul.go.kr:8088/${seoul_key}/json/SPOP_DAILYSUM_JACHI/1/15/`);

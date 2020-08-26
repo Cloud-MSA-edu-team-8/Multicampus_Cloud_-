@@ -1,8 +1,9 @@
 import React from 'react';
 import { UseSvg,Picker, DrawTable, Chart, MainHeader
-        ,RadarChart, RegionPicker, Loading, Footer } from './components'
+        ,RadarChart, RegionPicker, Loading, Footer, News } from './components'
 
-import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDraw } from './api';
+import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDraw
+        ,fetchNewsData } from './api';
 
 import styles from './App.module.css';
 
@@ -13,16 +14,19 @@ class App extends React.Component{
         category :'',
         regionDatasets : [],
         drawData : [],
+        newsData : [],
     };
     async componentDidMount(){
         try{
             // const regions = await fetchTestData();
             const regions = await fetchBackend('population');
             const drawData = await fetchRegionDraw();
+            const newsData = await fetchNewsData();
             this.setState({
                 region : regions,
                 category : '거주 인구 수', // default
                 drawData,
+                newsData,
             })
         }catch(e){
 
@@ -67,7 +71,7 @@ class App extends React.Component{
         }
     }
     render() {
-        const { region, category, regionDatasets, drawData } = this.state; // this is better to use 
+        const { region, category, regionDatasets, drawData, newsData } = this.state; // this is better to use 
 
         return (
             <div className={styles.container} id='start-point'>
@@ -78,6 +82,7 @@ class App extends React.Component{
                 <DrawTable region={region} category={category}/>
                 <Picker regions={region} handlePickerFunction={this.handleOneRegionData}/>
                 <RadarChart regionDatasets={regionDatasets} drawData={drawData}/>
+                <News newsData={newsData}/>
                 <Footer/>
             </div>
         )

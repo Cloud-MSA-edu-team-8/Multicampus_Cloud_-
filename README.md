@@ -20,6 +20,7 @@ Frontend : React<br>
 <del>[X] Clear Radar chart >> It's already implemented in ChartJS</del>
 [V] News data
 [V] Deploy with GitHub pages
+[V] Add Font authorship
 [ ] Naming (convention)
 [ ] Tab moving 
 [ ] Nav with app bar CSS work

@@ -17,9 +17,9 @@ const Picker = ({regions, handlePickerFunction}) =>{
 		oneRegionPicker = (
 			<div id="dist-picker" className={styles.container}>
             <Typography variant="h3" align='justify'>구별</Typography>
-				<FormControl className={styles.form}>
-					<InputLabel id="reg">지역 선택</InputLabel>
-					<Select labelId="reg" onChange={(e)=>{handlePickerFunction(e)}}>
+				<FormControl className={styles.form} id="dis-pic">
+					<InputLabel labelId="dis-pic" >지역 선택</InputLabel>
+					<Select onChange={(e)=>{handlePickerFunction(e)}}>
 					{regionList.map(e=><MenuItem value={e}>{regionDict[e]}</MenuItem>)}
 					</Select>
 				</FormControl>
@@ -28,9 +28,12 @@ const Picker = ({regions, handlePickerFunction}) =>{
 	}
 //  style={{background: 'black', color:'white'}} 
 	const categoryPicker = (
-		<FormControl className={styles.form}>
-		  <InputLabel id="cat">Category</InputLabel>
-		  <Select labelId="cat" onChange={(e)=>{handlePickerFunction(e)}}>
+		<FormControl className={styles.form} >
+		  <InputLabel id="cat-pic">Category</InputLabel>
+		  <Select 
+				labelId="cat-pic"
+				onChange={(e)=>{handlePickerFunction(e)}}
+			>
 			<MenuItem value={'population'}>거주 인구 수</MenuItem>
 			<MenuItem value={'crime'}>범죄 발생 건수</MenuItem>    
 			<MenuItem value={'house'}>평당 평균 가격</MenuItem>

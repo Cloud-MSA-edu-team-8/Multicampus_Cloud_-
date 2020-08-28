@@ -1,8 +1,8 @@
 import React from 'react';
 import { UseSvg,Picker, DrawTable, Chart, MainHeader
-        ,RadarChart, RegionPicker, Loading, Footer, News } from './components'
+        ,RadarChart, Loading, Footer, News } from './components'
 
-import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDraw
+import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDrawData
         ,fetchNewsData } from './api';
 
 import styles from './App.module.css';
@@ -20,7 +20,7 @@ class App extends React.Component{
         try{
             // const regions = await fetchTestData();
             const regions = await fetchBackend('population');
-            const drawData = await fetchRegionDraw();
+            const drawData = await fetchRegionDrawData();
             const newsData = await fetchNewsData();
             this.setState({
                 region : regions,

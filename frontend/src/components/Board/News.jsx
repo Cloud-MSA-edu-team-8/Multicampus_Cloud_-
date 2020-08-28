@@ -7,7 +7,7 @@ import { List, Typography, ListItemText, ListItem, Divider } from '@material-ui/
 
 const useStyles = makeStyles((theme) => ({
     list: {
-        maxWidth : '90vw',
+        maxWidth : '80vw',
         background : '#f0f0f0',
     },
 }));
@@ -17,16 +17,6 @@ const News = ({newsData}) =>{
     if(!newsData) return <Loading which="news"/>
     
     return (
-        <>
-        <div className={styles.container}>
-            <h1>News</h1>
-            <ul className={styles.news}>
-            {newsData.map(data=>(
-                    <li className={styles.li}><a href={data.link} target='_blank'><h4>{data.title}</h4></a></li>
-            ))}
-            </ul>
-        </div>
-
         <div className={styles.container}>
             <Typography variant="h3" align='justify'>News</Typography>
             <List className={styles.list}>
@@ -35,7 +25,7 @@ const News = ({newsData}) =>{
                     <ListItem className={styles.liItem}>
                         <ListItemText
                         primary={data.title}
-                        primaryTypographyProps={{component:"li", variant:"h6"}}
+                        primaryTypographyProps={{component:"li", variant:"body2"}}
                         secondary={
                                 <Typography
                                     component="span"
@@ -43,7 +33,7 @@ const News = ({newsData}) =>{
                                     color="textPrimary"
                                     align="left"
                                 >
-                                {"  "+"this will be detail"}
+                                {"  this will be detail"}
                                 </Typography>
                         }
                         />
@@ -53,8 +43,15 @@ const News = ({newsData}) =>{
                 ))}
             </List>
         </div>
-
-        </>
     )
 }
+
+        {/* <div className={styles.container}>
+            <h1>News</h1>
+            <ul className={styles.news}>
+            {newsData.map(data=>(
+                    <li className={styles.li}><a href={data.link} target='_blank'><h4>{data.title}</h4></a></li>
+            ))}
+            </ul>
+        </div> */}
 export default News

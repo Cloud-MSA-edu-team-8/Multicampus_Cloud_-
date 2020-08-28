@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme)=>({
         background: '#21232a',
         color:'white',
         width:'100vw',
-        marginTop:'50vh',
+        marginTop:'30vh',
         textAlign:'center',
         padding:'3rem',
         flexShrink: 0,

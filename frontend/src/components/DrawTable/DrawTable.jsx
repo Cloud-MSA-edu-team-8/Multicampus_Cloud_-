@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles'
+import { withStyles, makeStyles } from '@material-ui/core/styles'
 import { Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow
         ,CircularProgress } from '@material-ui/core'
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -10,9 +10,27 @@ import NumberFormat from 'react-number-format';
 import styles from './DrawTable.module.css';
 import Loading from '../Loading/Loading';
 
+// const StyledTableCell = withStyles((theme) => ({
+//     head: {
+//       backgroundColor: theme.palette.common.black,
+//       color: theme.palette.common.white,
+//     },
+//     body: {
+//       fontSize: 14,
+//     },
+//   }))(TableCell);
+  
+// const StyledTableRow = withStyles((theme) => ({
+//     root: {
+//       '&:nth-of-type(odd)': {
+//         backgroundColor: theme.palette.action.hover,
+//       },
+//     },
+//   }))(TableRow);
+  
 const useStyles = makeStyles({
     tableContainer: {
-      maxHeight: 440,
+      maxHeight: '70vh',
     },
     visuallyHidden: {
         border: 0,
@@ -52,57 +70,8 @@ const stableSort = (array, comparator) => {
 const alignDecision = (c)=>{
     return c ==='region_name' || c === 'rank' ? 'left' :'right'
 }
-// const EnhancedTableHead = (props) => {
-//     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-//     const createSortHandler = (property) => (event) => {
-//       onRequestSort(event, property);
-//     };
-  
-//     return (
-//       <TableHead>
-//         <TableRow>
-//           {columns.map((column) => (
-//             <TableCell
-//               key={column.id}
-//               align={column.numeric ? 'right' : 'left'}
-//               sortDirection={orderBy === column.id ? order : false}
-//             >
-//               <TableSortLabel
-//                 active={orderBy === column.id}
-//                 direction={orderBy === column.id ? order : 'asc'}
-//                 onClick={createSortHandler(column.id)}
-//               >
-//                 {columnDict[c] ? columnDict[c] : c }
 
-//                 {orderBy === column.id ? (
-//                   <span className={classes.visuallyHidden}>
-//                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-//                   </span>
-//                 ) : null}
-//               </TableSortLabel>
-//             </TableCell>
-//           ))}
-//         </TableRow>
-//       </TableHead>
-//     );
-// }
-const columnDict = {
-    'rank' : '순위',
-    'region_name' : '지역구',
-    'murder' : '살인',
-    'robber' : '강도',
-    'rape': '강간',
-    'theft':'절도',
-    'violence' : '폭력',
-    'arr_total' : '검거횟수',
-    'arrest' : '검거율',
-    'household' :'가구수',
-    'total_male' : '남(전체)',
-    'total_female' : '여(전체)',
-    'for_male' : '남(외국인)',
-    'for_female' : '여(외국인)',
-    'total' : '값',
-}
+
 const SortableTableHead = (props) =>{
     const { classes, order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) =>(event) =>{
@@ -165,21 +134,7 @@ const DrawTable = ({region, category}) => {
     const makeNumFomat = (num) =>{
         return <NumberFormat value = {num} thousandSeparator={true} displayType={'text'} />
     }
-
-    // make dict and assign that to columns arr
-    // to Make beautiful column name
     return(
-        <div>
-        {/* <div>
-            <SortableTableHead
-              classes={classes}
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-              columns = {columns}
-              />
-        </div> */}
-
         <div>
             <Paper className={styles.container}>
                 <TableContainer className={classes.tableContainer}>
@@ -189,19 +144,7 @@ const DrawTable = ({region, category}) => {
                         order={order}
                         orderBy={orderBy}
                         onRequestSort={handleRequestSort}
-                        // columns = {columns}
                         />
-                        {/* <TableHead className={classes.head}>
-                            <TableRow>
-                                <TableCell key={'rank'} align={'left'}>{'순위'}</TableCell>
-                                {columns.map(c=>(
-                                    <TableCell key = {c} align={ alignDecision(c) }>
-                                        {columnDict[c] ? columnDict[c] : c }
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead> */}
-
                         <TableBody>
                             {stableSort(region, getComparator(order,orderBy))
                                 .map((row,i)=>{ // # of row
@@ -225,10 +168,25 @@ const DrawTable = ({region, category}) => {
                 </TableContainer>
             </Paper>
         </div>
-        </div>
     )
     
 }
-
+const columnDict = {
+    'rank' : '순위',
+    'region_name' : '지역구',
+    'murder' : '살인',
+    'robber' : '강도',
+    'rape': '강간',
+    'theft':'절도',
+    'violence' : '폭력',
+    'arr_total' : '검거횟수',
+    'arrest' : '검거율',
+    'household' :'가구수',
+    'total_male' : '남(전체)',
+    'total_female' : '여(전체)',
+    'for_male' : '남(외국인)',
+    'for_female' : '여(외국인)',
+    'total' : '값',
+}
 
 export default DrawTable;

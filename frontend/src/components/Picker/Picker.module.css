@@ -2,8 +2,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin : 8vh auto;
+    margin : 10vh auto;
 }
+
 .form {
     min-width: 20vw;
     width: 25vw;

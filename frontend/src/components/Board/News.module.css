@@ -1,8 +1,9 @@
 .container{
-    margin-top : 2vh;
-    margin-bottom : 1vh;
+    /* margin-top : 10vh; */
+    margin-top: 10vh;
+    /* margin-bottom : 1vh; */
     align-items: center;
-    width: 70vw;
+    width: 50vw;
     margin : auto auto;
 }
 .li {
@@ -10,7 +11,7 @@
 }
 .li a, .a{
     text-decoration: none;
-    color : black;
+    color : inherit;
 }
 .liItem:hover{
     background : #c0c0c0;

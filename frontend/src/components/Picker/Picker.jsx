@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import { InputLabel, MenuItem, FormControl, Select, Typography } from '@material-ui/core';
 
 import styles from './Picker.module.css';
 
@@ -15,8 +15,8 @@ const Picker = ({regions, handlePickerFunction}) =>{
 			return e.region_code;
 		})
 		oneRegionPicker = (
-			<div id="dist-picker">
-				<h1 className={styles.container}>구별</h1>
+			<div id="dist-picker" className={styles.container}>
+            <Typography variant="h3" align='justify'>구별</Typography>
 				<FormControl className={styles.form}>
 					<InputLabel id="reg">지역 선택</InputLabel>
 					<Select labelId="reg" onChange={(e)=>{handlePickerFunction(e)}}>
@@ -42,9 +42,6 @@ const Picker = ({regions, handlePickerFunction}) =>{
 		  </Select>
 		</FormControl>
 	)
-
-
-
 
 	return (
 		<div className={styles.container}>

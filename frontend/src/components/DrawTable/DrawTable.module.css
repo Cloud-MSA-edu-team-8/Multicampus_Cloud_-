@@ -3,7 +3,13 @@
     align-items: center;
     flex-direction: column;
     margin : 5vh auto;
-    width: 80vw;
+    width: 70vw;
+
+}
+.tabContainer {
+    max-height: 70vh;
+    background: inherit;
+    color: inherit;
 }
 
 

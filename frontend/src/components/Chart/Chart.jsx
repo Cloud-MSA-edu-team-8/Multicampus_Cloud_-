@@ -14,7 +14,7 @@ const Chart = ({regions, category, drawData}) =>{
         colorCodes[e.region_code] = e.district_color;
     })
     const columns = regions.map(region=>region.region_name)
-    const regionColors = regions.map(region=>colorCodes[region.region_code])
+    const regionColors = regions.map(region=>colorCodes[region.region_code]+'99')
     const data = regions.map(region=> region.total)
 
     const barChart =(

@@ -4,27 +4,16 @@ var keys = require('./keys.json')
 const seoul_key = keys['seoul_key']
 
 // var backend_url = "http://192.168.0.30:8080/api/"
-const backend_url = "http://127.0.0.1:8000/api/";
-
-/* Just for test */
-export const fetchDjango = async()=>{
-    try{
-        const res = await axios.get('http://localhost:8000/api/');
-        return res.json();
-    }catch(e){
-        console.log(e);
-    }
-}
+// const backend_url = "http://127.0.0.1:8000/api/";
+const backend_url = "http://219.249.180.82:8080/api/"
 
 export const fetchBackend = async (category) =>{
-    // axios.get(backend_url)
-    //     .then( res => console.log(res))
     try{
         const res = await axios.get(backend_url+category);
         var modifiedData;
         if(category ==='crime'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.id,
+                region_code : data.areas,
                 region_name : data.area,
                 murder : data.murder,
                 robber : data.robber,
@@ -37,7 +26,7 @@ export const fetchBackend = async (category) =>{
             }))
         }else if(category ==='population'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.id,
+                region_code : data.areas,
                 region_name : data.area,
                 household : data.household,
                 total_male : data.total_male,
@@ -49,31 +38,31 @@ export const fetchBackend = async (category) =>{
             }))
         }else if(category === 'fire'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.code,
+                region_code : data.areas,
                 region_name : data.area,
                 total : data.fire_damage,
             }))
         }else if(category === 'alcohol'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.code,
+                region_code : data.areas,
                 region_name : data.area,
                 total : data.accident_num,
             }))
         }else if(category === 'children'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.code,
+                region_code : data.areas,
                 region_name : data.area,
                 total : data.accident_num,
             }))
         }else if(category === 'flood'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.id,
+                region_code : data.areas,
                 region_name : data.area,
                 total : data.people,
             }))
         }else if(category === 'house'){
             modifiedData = res.data.map((data)=>({
-                region_code : "KR" + data.id,
+                region_code : data.areas,
                 region_name : data.area,
                 total : data.price,
             }))
@@ -92,7 +81,7 @@ export const fetchOneRegionData = async(region) => {
         const res = await axios.get(specific_url);
         const d = res.data
         const modifiedData = {
-                region_code : d.id,
+                region_code : d.areas,
                 region_name : d.area,
                 population : d.population,
                 flood_vic : d.flood_vic,
@@ -110,12 +99,12 @@ export const fetchOneRegionData = async(region) => {
     
 }
 
-export const fetchRegionDraw = async() =>{
+export const fetchRegionDrawData = async() =>{
     try{
         const res = await axios.get(backend_url + 'svgd/')
         const modifiedData = res.data.map((d)=>({
-            region_code : "KR" + d.id,
-            district_color : d.colour +"bb",
+            region_code : d.id,
+            district_color : d.colour,
             svgd : d.location,
         }))
         return modifiedData;

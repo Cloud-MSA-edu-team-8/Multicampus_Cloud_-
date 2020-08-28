@@ -9,9 +9,6 @@ const theme = createMuiTheme({
     typography :{
         fontFamily: 'Jua, Russo One, sans-serif'
     },
-    inputlabel :{
-        color:'white',
-    }
 });
 
 ReactDOM.render(

@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "homepage": "https://multicampus-cloud-msa-safehome.github.io/safehome_frontend/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
@@ -52,8 +53,7 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ],
-    "homepages": "http://multicampus-cloud-msa-safehome.github.io/safehome_frontend/"
+    ]
   },
   "devDependencies": {
     "cross-env": "^7.0.2"

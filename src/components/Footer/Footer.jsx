@@ -23,7 +23,7 @@ const Footer = () =>{
     const classes = useStyles();
     return (
         <footer className={classes.container}>
-            <a className={classes.aTag} href="https://github.com/Cloud-MSA-edu-team-8" target="_blank">
+            <a className={classes.aTag} href="https://github.com/Multicampus-Cloud-MSA-safehome" target="_blank">
                 <Typography variant="h6">Visit Our GitHub</Typography>
                 {/* <img src={githubImg}></img> */}
             </a>

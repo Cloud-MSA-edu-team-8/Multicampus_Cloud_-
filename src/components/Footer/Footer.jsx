@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme)=>({
     },
     divTag:{
         marginTop: '10px'
+    },
+    fDiv:{
+        maxWidth: '50vw',
+        margin: '0 auto',
     }
 }));
 const LinkAndText = ({variant, text, link}) => {
@@ -36,35 +40,37 @@ const Footer = () =>{
     const classes = useStyles();
     return (
         <footer className={classes.container}>
-            <LinkAndText 
-                variant="h6"
-                text="Visit Our GitHub "
-                link="https://github.com/Multicampus-Cloud-MSA-safehome"
-                />
-            <div className={classes.divTag}>
+            <div className={classes.fDiv}>
                 <LinkAndText 
-                    variant="span"
-                    text="글꼴 [ 한글 : Jua  "
-                    link="https://fonts.google.com/specimen/Jua?query=jua"
+                    variant="h6"
+                    text="Visit Our GitHub "
+                    link="https://github.com/Multicampus-Cloud-MSA-safehome"
                     />
-                {', '}
-                <LinkAndText 
-                    variant="span"
-                    text="영어 : Russo one "
-                    link="https://fonts.google.com/specimen/Russo+One?query=russo+one"
-                    />
-                {', '}
-                <LinkAndText 
-                    variant="span"
-                    text="로고 : 잘난체 "
-                    link="https://www.goodchoice.kr/font"
-                    />
-                {' ]'}                
-            </div>
-            <div className={classes.divTag}>
-                링크 아이콘 제작자{' '}
-                <a className={classes.aTag} href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a>{' '}
-                from <a className={classes.aTag} href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+                <div className={classes.divTag}>
+                    <LinkAndText 
+                        variant="span"
+                        text="글꼴 [ 한글 : Jua  "
+                        link="https://fonts.google.com/specimen/Jua?query=jua"
+                        />
+                    {', '}
+                    <LinkAndText 
+                        variant="span"
+                        text="영어 : Russo one "
+                        link="https://fonts.google.com/specimen/Russo+One?query=russo+one"
+                        />
+                    {', '}
+                    <LinkAndText 
+                        variant="span"
+                        text="로고 : 잘난체 "
+                        link="https://www.goodchoice.kr/font"
+                        />
+                    {' ]'}                
+                </div>
+                <div className={classes.divTag}>
+                    링크 아이콘 제작자{' '}
+                    <a className={classes.aTag} href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a>{' '}
+                    from <a className={classes.aTag} href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
+                </div>
             </div>
         </footer>
     )

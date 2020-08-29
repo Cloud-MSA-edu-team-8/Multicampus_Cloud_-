@@ -25,12 +25,12 @@ const News = ({newsData}) =>{
                     <ListItem className={styles.liItem}>
                         <ListItemText
                         primary={data.title}
-                        primaryTypographyProps={{component:"li", variant:"body2"}}
+                        primaryTypographyProps={{component:"li", variant:"body1"}}
                         secondary={
                                 <Typography
                                     component="span"
                                     variant="body2"
-                                    color="textPrimary"
+                                    color="textSecondary"
                                     align="left"
                                 >
                                 {data.contents}

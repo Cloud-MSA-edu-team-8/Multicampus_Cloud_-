@@ -2,6 +2,7 @@ import React from 'react';
 import { Radar } from 'react-chartjs-2';
 
 import styles from './RadarChart.module.css';
+import { Typography } from '@material-ui/core';
 const columnDict = {
     'population' : '인구수',
     "flood_vic": '재난(홍수)',
@@ -44,7 +45,7 @@ const RadarChart = ({regionDatasets, drawData}) =>{
     return(
         <div className={styles.container}>
         <>
-            <p className={styles.p}> * 값 = ( 해당 구의 값 / 25개구 중 최대 값)</p>
+            <Typography component='p' className={styles.p}> * 값 = ( 해당 구의 값 / 25개구 중 최대 값)</Typography>
             <Radar
                 data ={radarData}
             />

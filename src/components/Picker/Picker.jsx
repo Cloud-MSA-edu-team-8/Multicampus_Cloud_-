@@ -15,21 +15,18 @@ const Picker = ({regions, handlePickerFunction}) =>{
 			return e.region_code;
 		})
 		oneRegionPicker = (
-			<div id="dist-picker" className={styles.container}>
-            <Typography variant="h3" align='justify'>구별</Typography>
-				<FormControl className={styles.form} id="dis-pic">
-					<InputLabel labelId="dis-pic" >지역 선택</InputLabel>
-					<Select onChange={(e)=>{handlePickerFunction(e)}}>
-					{regionList.map(e=><MenuItem value={e}>{regionDict[e]}</MenuItem>)}
-					</Select>
-				</FormControl>
-			</div>
+			<FormControl className={styles.form} id="dis-pic">
+				<InputLabel labelId="dis-pic" >지역 선택</InputLabel>
+				<Select onChange={(e)=>{handlePickerFunction(e)}}>
+				{regionList.map(e=><MenuItem value={e}>{regionDict[e]}</MenuItem>)}
+				</Select>
+			</FormControl>
 		)
 	}
 //  style={{background: 'black', color:'white'}} 
 	const categoryPicker = (
 		<FormControl className={styles.form} >
-		  <InputLabel id="cat-pic">Category</InputLabel>
+		  <InputLabel id="cat-pic">카테고리</InputLabel>
 		  <Select 
 				labelId="cat-pic"
 				onChange={(e)=>{handlePickerFunction(e)}}

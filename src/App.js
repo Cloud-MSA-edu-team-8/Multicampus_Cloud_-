@@ -19,8 +19,8 @@ class App extends React.Component{
         newsData : [],
     };
     async componentDidMount(){
+        this.setState({loading :true})
         try{
-            this.setState({loading :true})
             const regions = await fetchCategoryData('population');
             const drawData = await fetchRegionDrawData();
             const newsData = await fetchNewsData();
@@ -79,8 +79,11 @@ class App extends React.Component{
                 <UseSvg regions={regions} category={category} drawData={drawData} />
                 <Chart regions={regions} category={category} drawData={drawData} />
                 <DrawTable regions={regions} category={category}/>
-                <Picker regions={regions} handlePickerFunction={this.handleOneRegionData}/>
-                <RadarChart regionDatasets={regionDatasets} drawData={drawData}/>
+                <Picker regions={regions} handlePickerFunction={this.handleOneRegionData} />
+                {loading
+                    ?   <Loading/>
+                    :   <Typography variant="h3" align='justify'>구별</Typography>}
+                <RadarChart regionDatasets={regionDatasets} drawData={drawData} />
                 <News newsData={newsData}/>
                 <Footer/>
             </div>

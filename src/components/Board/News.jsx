@@ -18,7 +18,7 @@ const News = ({newsData}) =>{
     
     return (
         <div className={styles.container}>
-            <Typography variant="h3" align='justify'>News</Typography>
+            <Typography variant="h3" align="center">News</Typography>
             <List className={styles.list}>
                 {newsData.map(data=>(
                 <a className={styles.a}href={data.link} target="_blank">
@@ -28,10 +28,8 @@ const News = ({newsData}) =>{
                         primaryTypographyProps={{component:"li", variant:"body1"}}
                         secondary={
                                 <Typography
-                                    component="span"
                                     variant="body2"
                                     color="textSecondary"
-                                    align="left"
                                 >
                                 {data.contents}
                                 </Typography>

@@ -3,7 +3,8 @@
     margin-top: 10vh;
     /* margin-bottom : 1vh; */
     align-items: center;
-    width: 40vw;
+    flex-direction: column;
+    width: 60vw;
     margin : auto auto;
 }
 

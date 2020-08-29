@@ -118,6 +118,7 @@ export const fetchNewsData = async () =>{
         const newsData = res.data.map(data=>({
             title : data.title,
             link : data.link,
+            contents : data.contents,
         }))
         return newsData
     } catch (e) {

@@ -33,7 +33,7 @@ const News = ({newsData}) =>{
                                     color="textPrimary"
                                     align="left"
                                 >
-                                {"  this will be detail"}
+                                {data.contents}
                                 </Typography>
                         }
                         />

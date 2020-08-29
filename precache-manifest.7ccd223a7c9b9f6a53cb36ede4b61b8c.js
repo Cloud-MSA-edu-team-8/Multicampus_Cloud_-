@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7346c80e96a4b67340950bbde6856536",
+    "revision": "59f35bb25b13e0fd4db1e8be78632fd8",
     "url": "/safehome_frontend/index.html"
   },
   {
-    "revision": "3ba672709daacbd6e10b",
-    "url": "/safehome_frontend/static/css/main.322212e9.chunk.css"
+    "revision": "e5a41810d13fede03f23",
+    "url": "/safehome_frontend/static/css/main.e8041ab2.chunk.css"
   },
   {
     "revision": "94fc37508598c1f287e0",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/safehome_frontend/static/js/2.285b9350.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3ba672709daacbd6e10b",
+    "revision": "e5a41810d13fede03f23",
     "url": "/safehome_frontend/static/js/main.878f504d.chunk.js"
   },
   {

@@ -7,7 +7,7 @@ const seoul_key = keys['seoul_key']
 // const backend_url = "http://127.0.0.1:8000/api/";
 const backend_url = "https://django-react-safehome.herokuapp.com/api/"
 
-export const fetchBackend = async (category) =>{
+export const fetchCategoryData = async (category) =>{
     try{
         const res = await axios.get(backend_url+category);
         var modifiedData;

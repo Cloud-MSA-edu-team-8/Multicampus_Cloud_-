@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles'
-import { Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow
-        ,CircularProgress } from '@material-ui/core'
+import { Table, Paper, TableBody, TableCell
+        ,TableContainer, TableHead, TableRow} from '@material-ui/core'
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import PropTypes from 'prop-types';
 
@@ -111,7 +111,7 @@ SortableTableHead.propTypes = {
     order: PropTypes.oneOf(['asc', 'desc']).isRequired,
     orderBy: PropTypes.string.isRequired,
 }
-const DrawTable = ({region, category}) => {
+const DrawTable = ({regions, category}) => {
     const classes = useStyles();
 
     const [order, setOrder] = React.useState('asc');
@@ -124,11 +124,11 @@ const DrawTable = ({region, category}) => {
     };
 
 
-    if(!region || !region.length){
+    if(!regions || !regions.length){
         return <Loading which ="table"/>
     }
 
-    columns = Object.keys(region[0]); 
+    columns = Object.keys(regions[0]); 
     columns.shift();
 
     const makeNumFomat = (num) =>{
@@ -146,7 +146,7 @@ const DrawTable = ({region, category}) => {
                         onRequestSort={handleRequestSort}
                         />
                         <TableBody>
-                            {stableSort(region, getComparator(order,orderBy))
+                            {stableSort(regions, getComparator(order,orderBy))
                                 .map((row,i)=>{ // # of row
                                     return(
                                     <TableRow hover tabIndex={-1} key= {row.region_code}>

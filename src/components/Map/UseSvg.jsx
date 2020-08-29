@@ -19,16 +19,16 @@ const coloring = (num,color) =>{
 }
 const colorDict = {'red' : 339, 'green' : 129};
 
-const UseSvg = ({region , category, drawData}) => {
+const UseSvg = ({regions , category, drawData}) => {
 
-    if(!region || !region.length|| !drawData) return <Loading which="map"/>
+    if(!regions || !regions.length|| !drawData) return <Loading which="map"/>
     
     var region_dict = {}
     drawData = drawData.map((e)=>{
         region_dict[e.region_code] = e.svgd
     })
 
-    region.forEach(e=>{
+    regions.forEach(e=>{
         min = Math.min(min,e.total);
         max = Math.max(max,e.total);
     })
@@ -48,7 +48,7 @@ const UseSvg = ({region , category, drawData}) => {
 
     const drawSVG =(
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-            {region.map((region)=>
+            {regions.map((region)=>
                         <g key={region.region_name} className={styles.cell}>
                             <Tooltip title={makeMsg(region.region_name,region.total)} arrow placement="right-end">
                                 <path className={styles.pt} fill={coloring(region.total, colorDict['red'])} d={region_dict[region.region_code]}/>
@@ -59,7 +59,6 @@ const UseSvg = ({region , category, drawData}) => {
     )
     return(
         <div className={styles.container}>
-            <Typography variant="h3" align='justify'>{category}</Typography>
             {drawSVG}
         </div>
     )

@@ -4,7 +4,7 @@
 
 [Backend(other repo)](https://github.com/Cloud-MSA-edu-team-8/test_django) : (DRF) 
 
-Frontend : React<br>
+Frontend : React >> link : https://multicampus-cloud-msa-safehome.github.io/safehome_frontend/ <br>
 
 # TODO (Created 2020.08.21)
 #### Frontend

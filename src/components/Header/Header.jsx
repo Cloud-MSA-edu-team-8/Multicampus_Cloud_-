@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
+import { AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
 import { Tab, Tabs } from '@material-ui/core';
 // import { Route,BrowserRouter, Switch, Link } from 'react-router-dom';
 
 import title_img from '../../images/title_200_47.png';
 
-import styles from './MainHeader.module.css';
+import styles from './Header.module.css';
 
 const useStyles = makeStyles((theme)=>({
     appBar :{
@@ -38,7 +38,7 @@ const MainHeader = () => {
             <AppBar className={classes.appBar} position='fixed'>
                 <div className={styles.title_words}><del>고정관념은 버려라! 과연 그 동네는 안전할 것인가?</del></div>
                 <div className={styles.toolbarWrap}>
-                    <a className={styles.a} href=""><img className={styles.img} src={title_img} /></a>
+                    <a className={styles.a} href="/"><img className={styles.img} src={title_img} /></a>
                     {/* <div>
                         <nav clssName={styles.navbar}>
                             <a href="#start-point">

@@ -5,7 +5,7 @@ const seoul_key = keys['seoul_key']
 
 // var backend_url = "http://192.168.0.30:8080/api/"
 // const backend_url = "http://127.0.0.1:8000/api/";
-const backend_url = "http://219.249.180.82:8080/api/"
+const backend_url = "https://django-react-safehome.herokuapp.com/api/"
 
 export const fetchBackend = async (category) =>{
     try{

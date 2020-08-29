@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseSvg,Picker, DrawTable, Chart, MainHeader
+import { UseSvg,Picker, DrawTable, Chart, Header
         ,RadarChart, Loading, Footer, News } from './components'
 
 import { fetchTestData, fetchBackend, fetchOneRegionData, fetchRegionDrawData
@@ -74,8 +74,9 @@ class App extends React.Component{
         const { region, category, regionDatasets, drawData, newsData } = this.state; // this is better to use 
 
         return (
+            <>
             <div className={styles.container} id='start-point'>
-                <MainHeader/>
+                <Header/>
                 <Picker handlePickerFunction={this.handleCategoryChange}/>
                 <UseSvg region={region} category={category} drawData={drawData} />
                 <Chart regions={region} category={category} drawData={drawData} />
@@ -85,6 +86,7 @@ class App extends React.Component{
                 <News newsData={newsData}/>
                 <Footer/>
             </div>
+            </>
         )
     }
 }

@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme)=>({
         width:'100vw',
         marginTop:'30vh',
         textAlign:'center',
-        padding:'3rem',
-        flexShrink: 0,
     },
     aTag:{
         alignItems:'center',
@@ -23,6 +21,7 @@ const useStyles = makeStyles((theme)=>({
         marginTop: '10px'
     },
     fDiv:{
+        padding:'3rem',
         maxWidth: '50vw',
         margin: '0 auto',
     }

@@ -26,7 +26,7 @@ Frontend : React<br>
 [ ] Nav with app bar CSS work
 [ ] Trimming dictionaries
 
-[ ] React route
+[ ] React router
 [ ] Material-ui tabs as nav
 [ ] Login? 
 [ ] Preference?

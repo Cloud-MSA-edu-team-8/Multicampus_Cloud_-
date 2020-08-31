@@ -76,10 +76,16 @@ class App extends React.Component{
                 {loading
                     ?   <Loading/>
                     :   <Typography variant="h3" align='justify'>{category}</Typography>}
-                <UseSvg regions={regions} category={category} drawData={drawData} />
-                <Chart regions={regions} category={category} drawData={drawData} />
-                <DrawTable regions={regions} category={category}/>
-                <Picker regions={regions} handlePickerFunction={this.handleOneRegionData} />
+                {regions.length 
+                    ?
+                    <>
+                    <UseSvg regions={regions} category={category} drawData={drawData} />
+                    <Chart regions={regions} category={category} drawData={drawData} />
+                    <DrawTable regions={regions} category={category} />
+                    <Picker regions={regions} handlePickerFunction={this.handleOneRegionData} />
+                    </>
+                    : <Loading/>
+                }
                 {loading
                     ?   <Loading/>
                     :   <Typography variant="h3" align='justify'>구별</Typography>}

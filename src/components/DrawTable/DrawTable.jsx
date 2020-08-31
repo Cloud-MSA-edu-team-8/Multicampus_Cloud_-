@@ -1,5 +1,5 @@
-import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import React, {useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles'
 import { Table, Paper, TableBody, TableCell
         ,TableContainer, TableHead, TableRow} from '@material-ui/core'
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
 
 import styles from './DrawTable.module.css';
-import Loading from '../Loading/Loading';
 
 // const StyledTableCell = withStyles((theme) => ({
 //     head: {
@@ -44,7 +43,6 @@ const useStyles = makeStyles({
         width: 1,
       },
 });
-var columns = null;
 const descendingComparator = (a, b, orderBy) =>{
     return b[orderBy] - a[orderBy];
 }
@@ -73,10 +71,27 @@ const alignDecision = (c)=>{
 
 
 const SortableTableHead = (props) =>{
-    const { classes, order, orderBy, onRequestSort } = props;
+    const { classes, order, orderBy, onRequestSort, category, columns } = props;
     const createSortHandler = (property) =>(event) =>{
         onRequestSort(event, property);
     };
+    const columnDict = {
+        'rank' : '순위',
+        'region_name' : '지역구',
+        'murder' : '살인',
+        'robber' : '강도',
+        'rape': '강간',
+        'theft':'절도',
+        'violence' : '폭력',
+        'arr_total' : '검거횟수',
+        'arrest' : '검거율',
+        'household' :'가구수',
+        'total_male' : '남(전체)',
+        'total_female' : '여(전체)',
+        'for_male' : '남(외국인)',
+        'for_female' : '여(외국인)',
+        'total' : category,
+    }
     return (
         <TableHead>
             <TableRow>
@@ -113,9 +128,8 @@ SortableTableHead.propTypes = {
 }
 const DrawTable = ({regions, category}) => {
     const classes = useStyles();
-
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('rank');
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('rank');
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -124,11 +138,7 @@ const DrawTable = ({regions, category}) => {
     };
 
 
-    if(!regions || !regions.length){
-        return <Loading which ="table"/>
-    }
-
-    columns = Object.keys(regions[0]); 
+    var columns = Object.keys(regions[0]); 
     columns.shift();
 
     const makeNumFomat = (num) =>{
@@ -144,6 +154,8 @@ const DrawTable = ({regions, category}) => {
                         order={order}
                         orderBy={orderBy}
                         onRequestSort={handleRequestSort}
+                        columns ={columns}
+                        category ={category}
                         />
                         <TableBody>
                             {stableSort(regions, getComparator(order,orderBy))
@@ -171,22 +183,6 @@ const DrawTable = ({regions, category}) => {
     )
     
 }
-const columnDict = {
-    'rank' : '순위',
-    'region_name' : '지역구',
-    'murder' : '살인',
-    'robber' : '강도',
-    'rape': '강간',
-    'theft':'절도',
-    'violence' : '폭력',
-    'arr_total' : '검거횟수',
-    'arrest' : '검거율',
-    'household' :'가구수',
-    'total_male' : '남(전체)',
-    'total_female' : '여(전체)',
-    'for_male' : '남(외국인)',
-    'for_female' : '여(외국인)',
-    'total' : '값',
-}
+
 
 export default DrawTable;

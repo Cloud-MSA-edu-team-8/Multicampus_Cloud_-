@@ -10,6 +10,7 @@ import styles from './Header.module.css';
 
 const useStyles = makeStyles((theme)=>({
     appBar :{
+        position:'fixed',
         background: '#21232a',
     },
 }));
@@ -35,7 +36,7 @@ const MainHeader = () => {
     ]
     return(
         <div className={styles.container}>
-            <AppBar className={classes.appBar} position='fixed'>
+            <AppBar className={classes.appBar} >
                 <div className={styles.title_words}><del>고정관념은 버려라! 과연 그 동네는 안전할 것인가?</del></div>
                 <div className={styles.toolbarWrap}>
                     <a className={styles.a} href="/"><img className={styles.img} src={title_img} /></a>

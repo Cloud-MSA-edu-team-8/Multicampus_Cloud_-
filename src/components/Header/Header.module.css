@@ -1,10 +1,10 @@
 .container{
-    margin : 5vh 0;
+    margin : auto auto;
     display: flex;
     align-items: center; 
     flex-direction: column;
     width:100vw;
-    height: 10vh;
+    height: 20vh;
 }
 
 .navbar a{
@@ -21,13 +21,9 @@
 .img {
     width :200;
     height: 47;
-    /* display: flex; */
-    /* align-items: center; */
-    /* flex-direction: column; */
 }
 
 .toolbarWrap{
-    /* padding : 0 10vw; */
     margin : 0 auto;
 
     display: -webkit-box;
@@ -37,7 +33,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* height: 60px; */
+    height: 60px;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
@@ -52,13 +48,13 @@
     font-size :150%;
 }
 .tabs a{
-    /* margin: 0 20vw; */
     text-decoration: none;
     color : inherit;
 
 }
 @media (max-width : 770px) {
     .container {
+        width: 100%;
         margin : auto auto;
     }
 }

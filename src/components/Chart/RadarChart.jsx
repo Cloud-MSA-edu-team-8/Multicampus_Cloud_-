@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radar } from 'react-chartjs-2';
 
 import styles from './RadarChart.module.css';
 import { Typography } from '@material-ui/core';
+
 const columnDict = {
     'population' : '인구수',
     "flood_vic": '재난(홍수)',
@@ -15,26 +16,33 @@ const columnDict = {
 }
 
 const RadarChart = ({regionDatasets, drawData}) =>{
-    if(!regionDatasets || !regionDatasets.length) return <div className={styles.container}>지역을 선택하면 Radar가 그려집니다</div>
-    const columns = Object.keys(regionDatasets[0]);
-
-    const parsedColumns = columns.filter(c=>(c !== "region_code" && c !== "region_name"))
-    const korColumns = parsedColumns.map(c=>columnDict[c])
+    const [colorCodes, setColorCodes] = useState({})
     
-    var colorCodes= {}
-    drawData.map(e=>colorCodes[e.region_code] = e.district_color)
+    useEffect(()=>{
+        const makeDict = () =>{
+            var regionColorDict ={}
+            drawData.map(e=>regionColorDict[e.region_code] = e.district_color)
+            return regionColorDict;
+        }
+        setColorCodes(makeDict());
+    },[drawData]) 
+    
+    if(!regionDatasets || !regionDatasets.length) return <div className={styles.container}>지역을 선택하면 Radar가 그려집니다</div>
+    
+    const columns = Object.keys(regionDatasets[0]);
+    const dataOnlyColumns = columns.filter(c=>(c !== "region_code" && c !== "region_name"))
+    const korColumns = dataOnlyColumns.map(c=>columnDict[c])
 
     const dataSets = regionDatasets.map(regionsDataset=>{
         let regionCode = "KR" + regionsDataset.region_code,
             regionColor = colorCodes[regionCode];
-            // changeOpacity = colorCodes[regionCode].replace(/bb/g, '66')
         return {
             label : regionsDataset.region_name,
             backgroundColor: regionColor +'66',
             borderColor: regionColor +'bb',
             pointBorderColor: regionColor +'bb',
             pointBackgrounColor: regionColor +'bb',
-            data : parsedColumns.map(c=>regionsDataset[c]),
+            data : dataOnlyColumns.map(c=>regionsDataset[c]),
         }
     })
 
@@ -42,6 +50,7 @@ const RadarChart = ({regionDatasets, drawData}) =>{
         labels : korColumns,
         datasets : dataSets,
     }
+
     return(
         <div className={styles.container}>
         <>

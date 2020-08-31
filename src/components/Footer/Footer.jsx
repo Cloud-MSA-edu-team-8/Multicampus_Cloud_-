@@ -71,6 +71,7 @@ const Footer = () =>{
                     from <a className={classes.aTag} href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
                 </div>
             </div>
+
         </footer>
     )
 }

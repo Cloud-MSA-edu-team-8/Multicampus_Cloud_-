@@ -33,7 +33,6 @@ export const fetchCategoryData = async (category) =>{
                 total_female : data.total_female,
                 for_male : data.for_male,
                 for_female : data.for_female,
-
                 total : data.total_total,
             }))
         }else if(category === 'fire'){
@@ -74,13 +73,14 @@ export const fetchCategoryData = async (category) =>{
         console.log(e)
     }
 }
-export const fetchOneRegionData = async(region) => {
-    const regionCode = region.replace(/([A-Z])/g,'');
-    const specific_url =  backend_url + 'rate/' + regionCode;
+export const fetchOneRegionData = async (region) => {
+    // const regionCode = region.replace(/([A-Z])/g,'');
+    const specific_url =  backend_url + 'rate/' + region;
     try{
         const res = await axios.get(specific_url);
         const d = res.data
         const modifiedData = {
+                // ...d,
                 region_code : d.areas,
                 region_name : d.area,
                 population : d.population,
@@ -102,10 +102,13 @@ export const fetchOneRegionData = async(region) => {
 export const fetchRegionDrawData = async() =>{
     try{
         const res = await axios.get(backend_url + 'svgd/')
-        const modifiedData = res.data.map((d)=>({
-            region_code : d.id,
-            district_color : d.colour,
-            svgd : d.location,
+        const modifiedData = res.data.map(d=>({
+            // region_code : d.id,
+            // district_color : d.colour,
+            // svgd : d.location,
+            region_code : d.location,
+            district_color : d.code,
+            svgd : d.colour,
         }))
         return modifiedData;
     } catch (e){
@@ -115,12 +118,7 @@ export const fetchRegionDrawData = async() =>{
 export const fetchNewsData = async () =>{
     try{
         const res = await axios.get(backend_url+'news/')
-        const newsData = res.data.map(data=>({
-            title : data.title,
-            link : data.link,
-            contents : data.contents,
-        }))
-        return newsData
+        return res.data
     } catch (e) {
         console.log(e)
     }

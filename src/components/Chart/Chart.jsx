@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 import styles from './Chart.module.css'
-import Loading from '../Loading/Loading';
 
 const Chart = ({regions, category, drawData}) =>{
-    if(!regions || !regions.length|| !drawData) return <Loading which="chart"/>
+    const [colorCodes, setColorCodes] = useState({})
+    
+    useEffect(()=>{
+        const makeDict = () =>{
+            var regionColorDict ={}
+            drawData.map(e=>regionColorDict[e.region_code] = e.district_color)
+            return regionColorDict;
+        }
+        setColorCodes(makeDict());
+    },[drawData]) 
+
     regions.sort((a,b)=>{
         return b.total - a.total;
-    })
-    var colorCodes = {}
-    drawData.map(e=>{
-        colorCodes[e.region_code] = e.district_color;
     })
     const columns = regions.map(region=>region.region_name)
     const regionColors = regions.map(region=>colorCodes[region.region_code]+'99')

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme)=>({
     // },
 }));
 
-const MainHeader = () => {
+const MainHeader = ({scrollToContent}) => {
     const classes = useStyles()
     const [value, setValue] = useState(0)
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -48,9 +48,10 @@ const MainHeader = () => {
     useEffect(()=>{
         listenToScrollEvent()
     },[])
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log(newValue);
+        scrollToContent(newValue);
     };
     const makeLabel = (label) =>{
         return <Typography variant="h6">{label}</Typography>
@@ -94,11 +95,11 @@ const MainHeader = () => {
                             variant="standard"
                             centered
                             >
-                            <Tab label={makeLabel("전체")}><a href="dist-picker">저체</a></Tab>
+                            <Tab label={makeLabel("카테고리별")}/>
                             <Tab label={makeLabel("구별")}/>
                             {/* <Tab label={makeLabel("전체")} to="/" component={Link}/>
                             <Tab label={makeLabel("구별")} to="/dist-picker"component={Link}/> */}
-                            <Tab label={makeLabel("??? 뭐할까")} />
+                            <Tab label={makeLabel("뉴스")}/>
                             </Tabs>
                             {/* <Switch>
                                 <Route exact path="/" component={Picker}/>

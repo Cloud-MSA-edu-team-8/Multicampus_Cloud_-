@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { UseSvg,Picker, DrawTable, Chart, Header
         ,RadarChart, Footer, News, Loading } from './components';
 
@@ -10,7 +10,13 @@ import { Typography } from '@material-ui/core';
 import styles from './App.module.css';
 
 class App extends React.Component{
-
+    constructor(props){
+        super(props)
+        this.firstPickerSection = createRef()
+        this.secondPickerSection = createRef()
+        this.newsSection = createRef()
+        this.scrollToContent = this.scrollToContent.bind(this)
+    }
     state = {
         loading : false,
         regions : [],
@@ -66,14 +72,27 @@ class App extends React.Component{
             console.log(error);
         }
     }
+    scrollToContent = (content) =>{
+        switch(content){
+            case 0:
+                this.firstPickerSection.current.scrollIntoView({block:"end", behavior:'smooth'})
+                break;
+            case 1:
+                this.secondPickerSection.current.scrollIntoView({block:"end", behavior:'smooth'})
+                break;
+            case 2:
+                this.newsSection.current.scrollIntoView({block:"end", behavior:'smooth'})
+                break;
+        }
+    }
     render() {
         const { loading, regions, category, regionDatasets, drawData, newsData } = this.state; // this is better to use 
 
         return (
             <>
-            <div className={styles.container} id='start-point'>
-                <Header/>
-                <Picker handlePickerFunction={this.handleCategoryChange}/>
+            <div className={styles.container}>
+                <Header scrollToContent={this.scrollToContent}/>
+                <Picker handlePickerFunction={this.handleCategoryChange} ref={this.firstPickerSection}/>
                 {loading
                     ?   <Loading/>
                     :   <Typography variant="h3" align='justify'>{category}</Typography>}
@@ -90,8 +109,8 @@ class App extends React.Component{
                 {loading
                     ?   <Loading/>
                     :   <Typography variant="h3" align='justify'>구별</Typography>}
-                <RadarChart regionDatasets={regionDatasets} drawData={drawData} />
-                <News newsData={newsData}/>
+                <RadarChart regionDatasets={regionDatasets} drawData={drawData} ref={this.secondPickerSection}/>
+                <News newsData={newsData} ref={this.newsSection} />
                 <Footer/>
             </div>
             </>

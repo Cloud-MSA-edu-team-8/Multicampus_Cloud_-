@@ -6,11 +6,11 @@ import linkIcon from '../../images/link.png';
 import { List, Typography, ListItemText, ListItem, Divider } from '@material-ui/core';
 
 
-const News = ({newsData}) =>{
+const News = React.forwardRef(({newsData},ref) =>{
     if(!newsData) return <Loading which="news"/>
     
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <Typography variant="h3" align="center">News</Typography>
             <List className={styles.list}>
                 {newsData.map(data=>(
@@ -38,5 +38,5 @@ const News = ({newsData}) =>{
             </List>
         </div>
     )
-}
+});
 export default News

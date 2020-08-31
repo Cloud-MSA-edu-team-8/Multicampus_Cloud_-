@@ -4,7 +4,7 @@ import { InputLabel, MenuItem, FormControl, Select, Typography } from '@material
 import styles from './Picker.module.css';
 
 
-const Picker = ({regions, handlePickerFunction}) =>{
+const Picker = React.forwardRef(({regions, handlePickerFunction},ref) =>{
 
 	var oneRegionPicker = null;
 
@@ -23,7 +23,7 @@ const Picker = ({regions, handlePickerFunction}) =>{
 			</FormControl>
 		)
 	}
-//  style={{background: 'black', color:'white'}} 
+
 	const categoryPicker = (
 		<FormControl className={styles.form} >
 		  <InputLabel id="cat-pic">카테고리</InputLabel>
@@ -44,9 +44,9 @@ const Picker = ({regions, handlePickerFunction}) =>{
 	)
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} ref={ref}>
 			{regions ? oneRegionPicker : categoryPicker}
 		</div>
 	);
-}
+});
 export default Picker;

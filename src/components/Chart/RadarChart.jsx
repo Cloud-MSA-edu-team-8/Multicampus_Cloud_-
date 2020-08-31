@@ -15,7 +15,7 @@ const columnDict = {
     "house_price": '집값',
 }
 
-const RadarChart = ({regionDatasets, drawData}) =>{
+const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
     const [colorCodes, setColorCodes] = useState({})
     
     useEffect(()=>{
@@ -27,7 +27,8 @@ const RadarChart = ({regionDatasets, drawData}) =>{
         setColorCodes(makeDict());
     },[drawData]) 
     
-    if(!regionDatasets || !regionDatasets.length) return <div className={styles.container}>지역을 선택하면 Radar가 그려집니다</div>
+    if(!regionDatasets || !regionDatasets.length)
+        return <div className={styles.container} ref={ref}>지역을 선택하면 Radar가 그려집니다</div>
     
     const columns = Object.keys(regionDatasets[0]);
     const dataOnlyColumns = columns.filter(c=>(c !== "region_code" && c !== "region_name"))
@@ -52,7 +53,7 @@ const RadarChart = ({regionDatasets, drawData}) =>{
     }
 
     return(
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
         <>
             <Typography component='p' className={styles.p}> * 값 = ( 해당 구의 값 / 25개구 중 최대 값)</Typography>
             <Radar
@@ -62,5 +63,5 @@ const RadarChart = ({regionDatasets, drawData}) =>{
         </div>
 
     )
-}
+});
 export default RadarChart;

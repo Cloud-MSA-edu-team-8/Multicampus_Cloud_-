@@ -68,7 +68,7 @@ const MainHeader = ({scrollToContent}) => {
         <>
         <div className={styles.container}>
             <AppBar>
-                <div className={styles.title_words}><del>고정관념은 버려라! 과연 그 동네는 안전할 것인가?</del></div>
+                <div className={styles.title_words}>어디가 좋을구?</div>
                 <div className={styles.toolbarWrap}>
                     <a className={styles.a} href="/"><img className={styles.img} src={title_img} /></a>
                     <Toolbar>
@@ -86,7 +86,7 @@ const MainHeader = ({scrollToContent}) => {
                             <Tab label={makeLabel("뉴스")}/>
                             </Tabs>
                     </Toolbar>
-                    <Button className={styles.loginBtn} color="inherit">Login</Button>
+                    {/* <Button className={styles.loginBtn} color="inherit">Login</Button> */}
                 </div>
                 <ProgressBar scroll = {scrollPosition + '%'}/>
             </AppBar>

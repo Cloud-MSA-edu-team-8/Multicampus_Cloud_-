@@ -22,10 +22,10 @@ Frontend : React >> link : https://multicampus-cloud-msa-safehome.github.io/safe
 [V] Deploy with GitHub pages
 [V] Add Font authorship
 [V] Scroll Progress bar
-[ ] Naming (convention)
-[ ] Tab moving 
-[ ] Nav with app bar CSS work
+[V] Tab moving 
+[V] Nav with app bar CSS work
 [ ] Trimming dictionaries
+[ ] Naming (convention)
 
 [ ] React router
 [ ] Material-ui tabs as nav

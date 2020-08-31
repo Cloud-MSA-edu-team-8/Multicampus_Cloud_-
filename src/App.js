@@ -1,6 +1,7 @@
 import React from 'react';
 import { UseSvg,Picker, DrawTable, Chart, Header
-        ,RadarChart, Footer, News, Loading } from './components'
+        ,RadarChart, Footer, News, Loading } from './components';
+
 
 import { fetchCategoryData, fetchOneRegionData, fetchRegionDrawData
         ,fetchNewsData } from './api';

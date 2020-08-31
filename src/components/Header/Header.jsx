@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
 import { Tab, Tabs } from '@material-ui/core';
@@ -8,17 +8,46 @@ import title_img from '../../images/title_200_47.png';
 
 import styles from './Header.module.css';
 
+import ProgressBar from './ProgressBar';
+
 const useStyles = makeStyles((theme)=>({
-    appBar :{
-        position:'fixed',
-        background: '#21232a',
-    },
+    // appBar :{
+    //     position:'fixed',
+    //     background: '#21232a',
+    // },
 }));
 
 const MainHeader = () => {
-    const classes = useStyles();
-    const [value, setValue] = useState(0);
-  
+    const classes = useStyles()
+    const [value, setValue] = useState(0)
+    const [scrollPosition, setScrollPosition] = useState(0)
+
+    const listenToScrollEvent = () => {
+        document.addEventListener("scroll", () => {
+            requestAnimationFrame(()=>{
+                calculateScrollDistance();
+            })
+        })
+    }
+    const calculateScrollDistance = () => {
+        const scrollTop = window.pageYOffset; // how much the user has scrolled by
+        const winHeight = window.innerHeight;
+        const docHeight = getDocHeight();
+        const totalDocScrollLength = docHeight - winHeight;
+        setScrollPosition(Math.floor(scrollTop / totalDocScrollLength * 100))
+    }
+
+    const getDocHeight = () => {
+        return Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+    }
+    
+    useEffect(()=>{
+        listenToScrollEvent()
+    },[])
     const handleChange = (event, newValue) => {
         setValue(newValue);
         console.log(newValue);
@@ -35,6 +64,7 @@ const MainHeader = () => {
         }
     ]
     return(
+        <>
         <div className={styles.container}>
             <AppBar className={classes.appBar} >
                 <div className={styles.title_words}><del>고정관념은 버려라! 과연 그 동네는 안전할 것인가?</del></div>
@@ -78,8 +108,10 @@ const MainHeader = () => {
                     </Toolbar>
                     <Button className={styles.loginBtn} color="inherit">Login</Button>
                 </div>
+                <ProgressBar scroll = {scrollPosition + '%'}/>
             </AppBar>
         </div>
+        </>
     )
 
 }

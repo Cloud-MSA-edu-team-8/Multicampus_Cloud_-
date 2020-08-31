@@ -6,7 +6,11 @@
     width:100vw;
     height: 20vh;
 }
-
+.container header {
+    position:fixed;
+    /* background: linear-gradient(to right, #21232a, #23293d); */
+    background : #21232a;
+}
 .navbar a{
     /* display: flex; */
     color : inherit;

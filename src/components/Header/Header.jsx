@@ -67,25 +67,11 @@ const MainHeader = ({scrollToContent}) => {
     return(
         <>
         <div className={styles.container}>
-            <AppBar className={classes.appBar} >
+            <AppBar>
                 <div className={styles.title_words}><del>고정관념은 버려라! 과연 그 동네는 안전할 것인가?</del></div>
                 <div className={styles.toolbarWrap}>
                     <a className={styles.a} href="/"><img className={styles.img} src={title_img} /></a>
-                    {/* <div>
-                        <nav clssName={styles.navbar}>
-                            <a href="#start-point">
-                                Test0<i></i>
-                            </a>
-                            <a href="#dist-picker">
-                                Test1<i></i>
-                            </a>
-                            <a href="#dist-picker">
-                                Test2<i></i>
-                            </a>
-                        </nav>
-                    </div> */}
                     <Toolbar>
-                        {/* <BrowserRouter> */}
                             <Tabs
                             className={styles.tabs}
                             value={value}
@@ -97,15 +83,8 @@ const MainHeader = ({scrollToContent}) => {
                             >
                             <Tab label={makeLabel("카테고리별")}/>
                             <Tab label={makeLabel("구별")}/>
-                            {/* <Tab label={makeLabel("전체")} to="/" component={Link}/>
-                            <Tab label={makeLabel("구별")} to="/dist-picker"component={Link}/> */}
                             <Tab label={makeLabel("뉴스")}/>
                             </Tabs>
-                            {/* <Switch>
-                                <Route exact path="/" component={Picker}/>
-                                <Route path="/dist-picker" component={makeLabel("구별")}/>
-                            </Switch>
-                        </BrowserRouter> */}
                     </Toolbar>
                     <Button className={styles.loginBtn} color="inherit">Login</Button>
                 </div>

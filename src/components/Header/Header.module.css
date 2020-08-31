@@ -23,8 +23,7 @@
     justify-content: left;
 }
 .img {
-    width :200;
-    height: 47;
+    width:100%;
 }
 
 .toolbarWrap{

@@ -78,10 +78,10 @@ class App extends React.Component{
                 this.firstPickerSection.current.scrollIntoView({block:"end", behavior:'smooth'})
                 break;
             case 1:
-                this.secondPickerSection.current.scrollIntoView({block:"end", behavior:'smooth'})
+                this.secondPickerSection.current.scrollIntoView({block:"center", behavior:'smooth'})
                 break;
             case 2:
-                this.newsSection.current.scrollIntoView({block:"end", behavior:'smooth'})
+                this.newsSection.current.scrollIntoView({block:'end', behavior:'smooth'})
                 break;
         }
     }

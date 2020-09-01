@@ -24,11 +24,11 @@ Frontend : React >> link : https://multicampus-cloud-msa-safehome.github.io/safe
 [V] Scroll Progress bar
 [V] Tab moving 
 [V] Nav with app bar CSS work
+[V] Material-ui tabs as nav >> (creatRef)
 [ ] Trimming dictionaries
 [ ] Naming (convention)
 
 [ ] React router
-[ ] Material-ui tabs as nav
 [ ] Login? 
 [ ] Preference?
 [ ] Redux

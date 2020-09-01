@@ -73,7 +73,6 @@ export const fetchCategoryData = async (category) =>{
                 total : data.price,
             }))
         }
-        console.log(modifiedData)
         return modifiedData;
 
     } catch (error) { /*  Official, handling error */

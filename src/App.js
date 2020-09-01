@@ -37,8 +37,14 @@ class App extends React.Component{
                 drawData,
                 newsData,
             })
-        }catch(e){
-
+        }catch(error){
+            console.log('error here')
+            this.setState({
+                category: "Some error occured (probably server error)! Try again later!",
+                regions:[],
+                loading:false
+            })
+            throw error
         }
     }
 
@@ -47,14 +53,20 @@ class App extends React.Component{
                 name = e.nativeEvent.srcElement.innerText;
         this.setState({loading :true})
         try{
-            const data = await fetchCategoryData(category);
+            const regions = await fetchCategoryData(category);
             this.setState({
                 loading : false,
-                regions : data,
+                regions,
                 category :name,
             })
         }catch(error){
             console.log(error)
+            this.setState({
+                loading:false,
+                category: "Some error occured (probably server error)! Try again later!",
+                regions:[]
+            })
+            throw error
         }
     }
 
@@ -69,6 +81,12 @@ class App extends React.Component{
             });
         } catch (error) {
             console.log(error);
+            this.setState({
+                loading:false,
+                category: "Some error occured (probably server error)! Try again later!",
+                regionDatasets:[]
+            })
+            throw error
         }
     }
     scrollToContent = (content) =>{
@@ -88,7 +106,7 @@ class App extends React.Component{
                 {loading
                     ?   <Loading/>
                     :   <Typography variant="h3" align='justify'>{category}</Typography>}
-                {regions.length 
+                {regions.length
                     ?
                     <>
                     <UseSvg regions={regions} category={category} drawData={drawData} />

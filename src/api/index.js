@@ -98,6 +98,8 @@ export const fetchCategoryData = async (category) =>{
             console.log('Error', error.message);
         }
         console.log(error);
+        // return 'Some error occured!'
+        throw error
     }
 }
 export const fetchOneRegionData = async (region) => {

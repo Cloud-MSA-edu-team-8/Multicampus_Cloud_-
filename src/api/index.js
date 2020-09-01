@@ -5,11 +5,11 @@ const seoul_key = keys['seoul_key']
 
 // var backend_url = "http://192.168.0.30:8080/api/"
 // const backend_url = "http://127.0.0.1:8000/api/";
-const backend_url = "https://django-react-safehome.herokuapp.com/api/"
+const baseURL = "https://django-react-safehome.herokuapp.com/api/"
 
 export const fetchCategoryData = async (category) =>{
     try{
-        const res = await axios.get(backend_url+category);
+        const res = await axios.get(baseURL+category);
         var modifiedData;
         if(category ==='crime'){
             modifiedData = res.data.map((data)=>({
@@ -69,15 +69,34 @@ export const fetchCategoryData = async (category) =>{
         // console.log(modifiedData)
         return modifiedData;
 
-    } catch (e) {
-        console.log(e)
+    } catch (error) { /*  Official, handling error */
+        // Error 
+        if (error.response) {
+            /*
+            * The request was made and the server responded with a
+            * status code that falls out of the range of 2xx
+            */
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            /*
+            * The request was made but no response was received, `error.request`
+            * is an instance of XMLHttpRequest in the browser and an instance
+            * of http.ClientRequest in Node.js
+            */
+            console.log(error.request);
+        } else {
+            // Something happened in setting up the request and triggered an Error
+            console.log('Error', error.message);
+        }
+        console.log(error);
     }
 }
 export const fetchOneRegionData = async (region) => {
     // const regionCode = region.replace(/([A-Z])/g,'');
-    const specific_url =  backend_url + 'rate/' + region;
     try{
-        const res = await axios.get(specific_url);
+        const res = await axios.get(baseURL + 'rate/' + region)
         const d = res.data
         const modifiedData = {
                 // ...d,
@@ -101,7 +120,7 @@ export const fetchOneRegionData = async (region) => {
 
 export const fetchRegionDrawData = async() =>{
     try{
-        const res = await axios.get(backend_url + 'svgd/')
+        const res = await axios.get(baseURL + 'svgd/')
         const modifiedData = res.data.map(d=>({
             // region_code : d.id,
             // district_color : d.colour,
@@ -117,7 +136,7 @@ export const fetchRegionDrawData = async() =>{
 }
 export const fetchNewsData = async () =>{
     try{
-        const res = await axios.get(backend_url+'news/')
+        const res = await axios.get(baseURL+'news/')
         return res.data
     } catch (e) {
         console.log(e)

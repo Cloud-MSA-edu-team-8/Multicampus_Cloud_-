@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputLabel, MenuItem, FormControl, Select, Typography } from '@material-ui/core';
+import { InputLabel, MenuItem, FormControl, Select} from '@material-ui/core';
 
 import styles from './Picker.module.css';
 
@@ -33,12 +33,11 @@ const Picker = React.forwardRef(({regions, handlePickerFunction},ref) =>{
 			>
 			<MenuItem value={'population'}>거주 인구 수</MenuItem>
 			<MenuItem value={'crime'}>범죄 발생 건수</MenuItem>    
-			<MenuItem value={'house'}>평당 평균 가격</MenuItem>
 			<MenuItem value={'children'}>어린이 교통사고</MenuItem>
+			<MenuItem value={'alcohol'}>음주운전사고</MenuItem>
 			<MenuItem value={'fire'}>화재피해</MenuItem>
 			<MenuItem value={'flood'}>홍수피해인원</MenuItem>
-			<MenuItem value={'alcohol'}>음주운전사고</MenuItem>
-			{/* <MenuItem value={'test'}>TEST</MenuItem> */}
+			<MenuItem value={'house'}>평당 평균 가격</MenuItem>
 		  </Select>
 		</FormControl>
 	)

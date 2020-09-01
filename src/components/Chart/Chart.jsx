@@ -15,9 +15,7 @@ const Chart = ({regions, category, drawData}) =>{
         setColorCodes(makeDict());
     },[drawData]) 
 
-    regions.sort((a,b)=>{
-        return b.total - a.total;
-    })
+    regions.sort((a,b)=>{ return b.total - a.total }) // Will change the original value
     const columns = regions.map(region=>region.region_name)
     const regionColors = regions.map(region=>colorCodes[region.region_code]+'99')
     const data = regions.map(region=> region.total)

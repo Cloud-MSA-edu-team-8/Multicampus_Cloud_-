@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Button, Typography, IconButton} from '@material-ui/core';
+import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
 import { Tab, Tabs } from '@material-ui/core';
-// import { Route,BrowserRouter, Switch, Link } from 'react-router-dom';
 
 import title_img from '../../images/title_200_47.png';
 
@@ -10,15 +8,8 @@ import styles from './Header.module.css';
 
 import ProgressBar from './ProgressBar';
 
-const useStyles = makeStyles((theme)=>({
-    // appBar :{
-    //     position:'fixed',
-    //     background: '#21232a',
-    // },
-}));
 
 const MainHeader = ({scrollToContent}) => {
-    const classes = useStyles()
     const [value, setValue] = useState(0)
     const [scrollPosition, setScrollPosition] = useState(0)
 
@@ -47,7 +38,7 @@ const MainHeader = ({scrollToContent}) => {
     
     useEffect(()=>{
         listenToScrollEvent()
-    },[])
+    })
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -56,21 +47,14 @@ const MainHeader = ({scrollToContent}) => {
     const makeLabel = (label) =>{
         return <Typography variant="h6">{label}</Typography>
     }
-    const navItems=[
-        {
-            target : "all"
-        },
-        {
-            target : "oneRegion"
-        }
-    ]
+
     return(
         <>
         <div className={styles.container}>
             <AppBar>
                 <div className={styles.title_words}>어디가 좋을구?</div>
                 <div className={styles.toolbarWrap}>
-                    <a className={styles.a} href="/"><img className={styles.img} src={title_img} /></a>
+                    <a className={styles.a} href="/"><img className={styles.img} src={title_img} alt="img error"/></a>
                     <Toolbar>
                             <Tabs
                             className={styles.tabs}

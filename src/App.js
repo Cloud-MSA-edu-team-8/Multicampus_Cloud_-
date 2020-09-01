@@ -2,7 +2,6 @@ import React, { createRef } from 'react';
 import { UseSvg,Picker, DrawTable, Chart, Header
         ,RadarChart, Footer, News, Loading } from './components';
 
-
 import { fetchCategoryData, fetchOneRegionData, fetchRegionDrawData
         ,fetchNewsData } from './api';
 
@@ -73,18 +72,11 @@ class App extends React.Component{
         }
     }
     scrollToContent = (content) =>{
-        switch(content){
-            case 0:
-                this.firstPickerSection.current.scrollIntoView({block:"end", behavior:'smooth'})
-                break;
-            case 1:
-                this.secondPickerSection.current.scrollIntoView({block:"center", behavior:'smooth'})
-                break;
-            case 2:
-                this.newsSection.current.scrollIntoView({block:'end', behavior:'smooth'})
-                break;
-        }
+        if(content === 0) this.firstPickerSection.current.scrollIntoView({block:"end", behavior:'smooth'})
+        else if (content === 1) this.secondPickerSection.current.scrollIntoView({block:"center", behavior:'smooth'})
+        else if (content === 2) this.newsSection.current.scrollIntoView({block:'start', behavior:'smooth'})
     }
+
     render() {
         const { loading, regions, category, regionDatasets, drawData, newsData } = this.state; // this is better to use 
 

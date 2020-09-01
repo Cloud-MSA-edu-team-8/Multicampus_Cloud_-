@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
 import linkIcon from '../../images/link.png';
+import { Link } from 'react-router-dom';
 // import githubImg from '../../images/GitHub-Mark-32px.png';
 
 const useStyles = makeStyles((theme)=>({
@@ -26,11 +27,11 @@ const useStyles = makeStyles((theme)=>({
         margin: '0 auto',
     }
 }));
-const LinkAndText = ({variant, text, link}) => {
+const LinkAndText = ({variant, text, link, component}) => {
     return(
-        <Typography variant={variant}> {text + ' '}
+        <Typography variant={variant} component ={component}> {text + ' '}
             <a href={link} >
-                <img src={linkIcon} width="15" height="15"/>
+                <img src={linkIcon} alt="img error" width="15" height="15"/>
             </a>
         </Typography>
     )
@@ -41,29 +42,40 @@ const Footer = () =>{
         <footer className={classes.container}>
             <div className={classes.fDiv}>
                 <LinkAndText 
-                    variant="h6"
+                    variant="h5"
                     text="Visit Our GitHub "
                     link="https://github.com/Multicampus-Cloud-MSA-safehome"
                     />
                 <div className={classes.divTag}>
+                    <Typography variant="h6">[글꼴]</Typography>
                     <LinkAndText 
-                        variant="span"
-                        text="글꼴 [ 한글 : Jua  "
+                        component="p"
+                        text="한글 : Jua  "
                         link="https://fonts.google.com/specimen/Jua?query=jua"
                         />
-                    {', '}
                     <LinkAndText 
-                        variant="span"
+                        component="p"
                         text="영어 : Russo one "
                         link="https://fonts.google.com/specimen/Russo+One?query=russo+one"
                         />
-                    {', '}
                     <LinkAndText 
-                        variant="span"
+                        component="p"
                         text="로고 : 잘난체 "
                         link="https://www.goodchoice.kr/font"
                         />
-                    {' ]'}                
+                </div>
+                <div className={classes.divTag}>
+                    <Typography variant="h6">[데이터]</Typography>
+                    <LinkAndText
+                        component="p"
+                        text="서울 열린데이터광장"
+                        link="https://data.seoul.go.kr/"
+                    />
+                    <LinkAndText
+                        component="p"
+                        text="서울시 지도 SVG 좌표 데이터 "
+                        link="http://www.gisdeveloper.co.kr/?p=8555"
+                    />
                 </div>
                 <div className={classes.divTag}>
                     링크 아이콘 제작자{' '}
@@ -71,7 +83,6 @@ const Footer = () =>{
                     from <a className={classes.aTag} href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a>
                 </div>
             </div>
-
         </footer>
     )
 }

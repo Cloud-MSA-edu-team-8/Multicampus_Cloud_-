@@ -1,8 +1,9 @@
 import React, {useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
-import { Table, Paper, TableBody, TableCell
-        ,TableContainer, TableHead, TableRow} from '@material-ui/core'
-import TableSortLabel from '@material-ui/core/TableSortLabel';
+import { Table, Paper, TableBody, TableCell,
+        TableContainer, TableHead, TableRow, FormControlLabel,
+        Switch, TableSortLabel, Tooltip, Typography} from '@material-ui/core'
+import AnnouncementIcon from '@material-ui/icons/Announcement';
 import PropTypes from 'prop-types';
 
 import NumberFormat from 'react-number-format';
@@ -139,13 +140,16 @@ const DrawTable = ({regions, category}) => {
     const classes = useStyles();
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('rank');
+    const [dense, setDense] = React.useState(false);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
-
+    const handleChangeDense = (event) => {
+        setDense(event.target.checked);
+    };
 
     var columns = Object.keys(regions[0]); 
     columns.shift();
@@ -153,11 +157,24 @@ const DrawTable = ({regions, category}) => {
     const makeNumFomat = (num) =>{
         return <NumberFormat value = {num} thousandSeparator={true} displayType={'text'} />
     }
+
     return(
-        <div>
-            <Paper className={styles.container}>
+        <div className={styles.container}>
+            <div className={styles.tboptions}>
+                <Tooltip title={<Typography component="span">컬럼명을 누르면 해당 컬럼 기준으로 정렬 가능</Typography>} arrow placement="top-start">
+                    <AnnouncementIcon className={styles.icon} />
+                </Tooltip>
+                <span align='right'>
+                <FormControlLabel
+                    className={styles.denseform}
+                    control={<Switch checked={dense} onChange={handleChangeDense} />}
+                    label="간격 축소"
+                />
+                </span>
+            </div>
+            <Paper className={styles.paper}>
                 <TableContainer className={classes.tableContainer}>
-                    <Table stickyHeader aria-label="sticky table">
+                    <Table stickyHeader size={dense ? 'small' : 'medium'} aria-label="sticky table">
                     <SortableTableHead
                         classes={classes}
                         order={order}
@@ -184,10 +201,16 @@ const DrawTable = ({regions, category}) => {
                                     );
                                 })
                             }
+                            {
+                                <TableRow style={{ height: (dense ? 33 : 53) }}>
+                                    <TableCell colSpan={6} />
+                                </TableRow>
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
+
         </div>
     )
     

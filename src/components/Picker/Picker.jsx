@@ -15,9 +15,9 @@ const Picker = React.forwardRef(({regions, handlePickerFunction},ref) =>{
 			return e.region_code;
 		})
 		oneRegionPicker = (
-			<FormControl className={styles.form} id="dis-pic">
-				<InputLabel labelId="dis-pic" >지역 선택</InputLabel>
-				<Select onChange={(e)=>{handlePickerFunction(e)}}>
+			<FormControl className={styles.form} ref={ref}>
+				<InputLabel>지역 선택</InputLabel>
+				<Select onChange={(e)=>{handlePickerFunction(e)}} defaultValue=''>
 				{regionList.map(e=><MenuItem value={e}>{regionDict[e]}</MenuItem>)}
 				</Select>
 			</FormControl>
@@ -25,12 +25,9 @@ const Picker = React.forwardRef(({regions, handlePickerFunction},ref) =>{
 	}
 
 	const categoryPicker = (
-		<FormControl className={styles.form} >
-		  <InputLabel id="cat-pic">카테고리</InputLabel>
-		  <Select 
-				labelId="cat-pic"
-				onChange={(e)=>{handlePickerFunction(e)}}
-			>
+		<FormControl className={styles.form} ref={ref}>
+		  <InputLabel>카테고리</InputLabel>
+		  <Select onChange={(e)=>{handlePickerFunction(e)}} defaultValue='population'>
 			<MenuItem value={'population'}>거주 인구 수</MenuItem>
 			<MenuItem value={'crime'}>범죄 발생 건수</MenuItem>    
 			<MenuItem value={'children'}>어린이 교통사고</MenuItem>
@@ -43,7 +40,7 @@ const Picker = React.forwardRef(({regions, handlePickerFunction},ref) =>{
 	)
 
 	return (
-		<div className={styles.container} ref={ref}>
+		<div className={styles.container}>
 			{regions ? oneRegionPicker : categoryPicker}
 		</div>
 	);

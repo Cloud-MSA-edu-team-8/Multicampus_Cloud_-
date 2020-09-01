@@ -94,14 +94,14 @@ class App extends React.Component{
                     <UseSvg regions={regions} category={category} drawData={drawData} />
                     <Chart regions={regions} category={category} drawData={drawData} />
                     <DrawTable regions={regions} category={category} />
-                    <Picker regions={regions} handlePickerFunction={this.handleOneRegionData} />
+                    <Picker regions={regions} handlePickerFunction={this.handleOneRegionData} ref={this.secondPickerSection}/>
                     </>
                     : <Loading/>
                 }
                 {loading
                     ?   <Loading/>
                     :   <Typography variant="h3" align='justify'>구별</Typography>}
-                <RadarChart regionDatasets={regionDatasets} drawData={drawData} ref={this.secondPickerSection}/>
+                <RadarChart regionDatasets={regionDatasets} drawData={drawData}/>
                 <News newsData={newsData} ref={this.newsSection} />
                 <Footer/>
             </div>

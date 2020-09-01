@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
 import linkIcon from '../../images/link.png';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import githubImg from '../../images/GitHub-Mark-32px.png';
 
 const useStyles = makeStyles((theme)=>({

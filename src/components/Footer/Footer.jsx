@@ -78,6 +78,11 @@ const Footer = () =>{
                         text="서울시 지도 SVG 좌표 데이터 "
                         link="http://www.gisdeveloper.co.kr/?p=8555"
                     />
+                    <LinkAndText
+                        component="p"
+                        text="네이버 뉴스(크롤링)"
+                        link="https://news.naver.com/"
+                    />
                 </div>
                 <div className={classes.divTag}>
                     링크 아이콘 제작자{' '}

@@ -45,12 +45,19 @@ export const fetchCategoryData = async (category) =>{
             modifiedData = res.data.map((data)=>({
                 region_code : data.areas,
                 region_name : data.area,
+                dead_num : data.dead_num,
+                casual_num : data.casual_num,
+                casual_rate : data.casual_rate,
+                acc_rate : data.acc_rate,
                 total : data.accident_num,
             }))
         }else if(category === 'children'){
             modifiedData = res.data.map((data)=>({
                 region_code : data.areas,
                 region_name : data.area,
+                accident_rate : data.accident_rate,
+                safe_num : data.safe_num,
+                safe_rate : data.safe_rate,
                 total : data.accident_num,
             }))
         }else if(category === 'flood'){

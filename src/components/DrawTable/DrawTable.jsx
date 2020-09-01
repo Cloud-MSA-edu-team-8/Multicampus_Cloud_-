@@ -90,6 +90,13 @@ const SortableTableHead = (props) =>{
         'total_female' : '여(전체)',
         'for_male' : '남(외국인)',
         'for_female' : '여(외국인)',
+        "accident_rate": '발생 비율',
+        "safe_num": '보호구역 내 발생',
+        "safe_rate": '보호구역 내 발생 비율',
+        "dead_num": '사망자수',
+        "casual_num": '부상자수',
+        "acc_rate": '발생 비율',
+        "casual_rate": '부상자 비율',
         'total' : category,
     }
     return (
@@ -107,11 +114,13 @@ const SortableTableHead = (props) =>{
                             onClick={createSortHandler(c)}
                         >
                         {columnDict[c] ? columnDict[c] : c }
-                        {orderBy === c ? (
-                            <span className = {classes.visuallyHidden}>
-                                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                            </span>
-                        ):null}
+                        {orderBy === c 
+                            ? (
+                                <span className = {classes.visuallyHidden}>
+                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                                </span>
+                                )
+                            : null}
                         </TableSortLabel>
                     </TableCell>
                 ))}

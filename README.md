@@ -25,6 +25,7 @@ Frontend : React >> link : https://multicampus-cloud-msa-safehome.github.io/safe
 [V] Tab moving 
 [V] Nav with app bar CSS work
 [V] Material-ui tabs as nav >> (creatRef)
+[V] Error handling (roughly)
 [ ] Trimming dictionaries
 [ ] Naming (convention)
 

@@ -13,8 +13,8 @@ export const fetchCategoryData = async (category) =>{
         var modifiedData;
         if(category ==='crime'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 murder : data.murder,
                 robber : data.robber,
                 rape : data.rape,
@@ -26,8 +26,8 @@ export const fetchCategoryData = async (category) =>{
             }))
         }else if(category ==='population'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 household : data.household,
                 total_male : data.total_male,
                 total_female : data.total_female,
@@ -37,14 +37,14 @@ export const fetchCategoryData = async (category) =>{
             }))
         }else if(category === 'fire'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 total : data.fire_damage,
             }))
         }else if(category === 'alcohol'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 dead_num : data.dead_num,
                 casual_num : data.casual_num,
                 casual_rate : data.casual_rate,
@@ -53,8 +53,8 @@ export const fetchCategoryData = async (category) =>{
             }))
         }else if(category === 'children'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 accident_rate : data.accident_rate,
                 safe_num : data.safe_num,
                 safe_rate : data.safe_rate,
@@ -62,18 +62,18 @@ export const fetchCategoryData = async (category) =>{
             }))
         }else if(category === 'flood'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 total : data.people,
             }))
         }else if(category === 'house'){
             modifiedData = res.data.map((data)=>({
-                region_code : data.areas,
-                region_name : data.area,
+                region_code : data.region_code,
+                region_name : data.region_name,
                 total : data.price,
             }))
         }
-        // console.log(modifiedData)
+        console.log(modifiedData)
         return modifiedData;
 
     } catch (error) { /*  Official, handling error */
@@ -129,16 +129,8 @@ export const fetchOneRegionData = async (region) => {
 
 export const fetchRegionDrawData = async() =>{
     try{
-        const res = await axios.get(baseURL + 'svgd/')
-        const modifiedData = res.data.map(d=>({
-            // region_code : d.id,
-            // district_color : d.colour,
-            // svgd : d.location,
-            region_code : d.location,
-            district_color : d.code,
-            svgd : d.colour,
-        }))
-        return modifiedData;
+        const res = await axios.get(baseURL + 'draw_data/')
+        return res.data;
     } catch (e){
         console.log(e)
     }

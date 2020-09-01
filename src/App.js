@@ -30,6 +30,7 @@ class App extends React.Component{
             const regions = await fetchCategoryData('population');
             const drawData = await fetchRegionDrawData();
             const newsData = await fetchNewsData();
+            console.log(drawData)
             this.setState({
                 loading : false,
                 regions : regions,

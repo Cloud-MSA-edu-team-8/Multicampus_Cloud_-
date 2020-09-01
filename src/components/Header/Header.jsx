@@ -54,7 +54,7 @@ const MainHeader = ({scrollToContent}) => {
             <AppBar>
                 <div className={styles.title_words}>어디가 좋을구?</div>
                 <div className={styles.toolbarWrap}>
-                    <a className={styles.a} href="/"><img className={styles.img} src={title_img} alt="img error"/></a>
+                    <div className={styles.iconImg}><a href="/"><img className={styles.img} src={title_img} alt="img error"/></a></div>
                     <Toolbar>
                             <Tabs
                             className={styles.tabs}

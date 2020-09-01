@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
 import linkIcon from '../../images/link.png';
+import styles from './Footer.moulde.css';
 // import { Link } from 'react-router-dom';
 // import githubImg from '../../images/GitHub-Mark-32px.png';
 
@@ -39,6 +40,7 @@ const LinkAndText = ({variant, text, link, component}) => {
 const Footer = () =>{
     const classes = useStyles();
     return (
+        <div className={styles.containerWrap}>
         <footer className={classes.container}>
             <div className={classes.fDiv}>
                 <LinkAndText 
@@ -84,6 +86,7 @@ const Footer = () =>{
                 </div>
             </div>
         </footer>
+        </div>
     )
 }
 export default Footer;

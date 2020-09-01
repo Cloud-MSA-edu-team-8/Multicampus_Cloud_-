@@ -18,6 +18,6 @@
 @media only screen and (max-width: 770px) {
     .container {
         width: 50%;
-        margin : 1vh 0;
+        margin : 1vh auto;
     }
 }

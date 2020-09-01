@@ -51,4 +51,8 @@
         width: 100%;
         margin : auto 0;
     }
+    .iconImg{
+        margin-left: 2vw;
+        width : 30vw;
+    }
 }

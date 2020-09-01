@@ -33,7 +33,7 @@ class App extends React.Component{
             this.setState({
                 loading : false,
                 regions : regions,
-                category : '거주 인구 수', // default
+                category : '거주 인구 수', // default 
                 drawData,
                 newsData,
             })

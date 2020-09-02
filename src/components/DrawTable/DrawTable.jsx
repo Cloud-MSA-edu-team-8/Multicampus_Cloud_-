@@ -167,9 +167,9 @@ const DrawTable = ({regions, category}) => {
             <Tooltip title={<Typography component="span">컬럼명을 누르면 해당 컬럼 기준으로 정렬 가능</Typography>} arrow placement="top-start">
                 <AnnouncementIcon className={styles.icon} />
             </Tooltip>
-            <Paper >
+            <Paper className={styles.paper}>
                 <TableContainer className={classes.tableContainer}>
-                    <Table stickyHeader size={dense ? 'small' : 'medium'} aria-label="sticky table"  style={{ width: "auto", tableLayout: "auto" }}>
+                    <Table stickyHeader size={dense ? 'small' : 'medium'} aria-label="sticky table"  style={{ width: 'auto',  tableLayout: "auto" }}>
                     <SortableTableHead
                         classes={classes}
                         order={order}

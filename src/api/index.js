@@ -3,75 +3,61 @@ import axios from 'axios';
 var keys = require('./keys.json')
 const seoul_key = keys['seoul_key']
 
-// var backend_url = "http://192.168.0.30:8080/api/"
-// const backend_url = "http://127.0.0.1:8000/api/";
 const baseURL = "https://django-react-safehome.herokuapp.com/api/"
 
 export const fetchCategoryData = async (category) =>{
     try{
         const res = await axios.get(baseURL+category);
-        var modifiedData;
+        var modifiedData
         if(category ==='crime'){
-            modifiedData = res.data.map((data)=>({
-                region_code : data.region_code,
-                region_name : data.region_name,
-                murder : data.murder,
-                robber : data.robber,
-                rape : data.rape,
-                theft : data.theft,
-                arrest : data.arrest +'%', // 비율
-                violence : data.violence,
-                total : data.total, // 모든 범죄 수
-                arr_total : data.arr_total // 체포 된 수 
+            modifiedData = res.data
+        }
+        else if(category ==='population'){
+            modifiedData = res.data.map(data=>({
+                region_code: data.region_code,
+                household: data.household,
+                total_male: data.total_male,
+                total_female: data.total_female,
+                total: data.total_total,
+                for_male: data.for_male,
+                for_female: data.for_female,
             }))
-        }else if(category ==='population'){
-            modifiedData = res.data.map((data)=>({
+        }
+        else if(category === 'fire'){
+            modifiedData = res.data
+            res.data.forEach((data,i)=>{
+                modifiedData[i].total = data.fire_damage
+                delete modifiedData[i].fire_damage
+            })
+        }
+        else if(category === 'alcohol'){
+            modifiedData = res.data
+
+            res.data.forEach((data,i)=>{
+                modifiedData[i].total = data.accident_num
+                delete modifiedData[i].accident_num
+            })
+        }
+        else if(category === 'children'){
+            modifiedData = res.data.map(data=>({
                 region_code : data.region_code,
-                region_name : data.region_name,
-                household : data.household,
-                total_male : data.total_male,
-                total_female : data.total_female,
-                for_male : data.for_male,
-                for_female : data.for_female,
-                total : data.total_total,
-            }))
-        }else if(category === 'fire'){
-            modifiedData = res.data.map((data)=>({
-                region_code : data.region_code,
-                region_name : data.region_name,
-                total : data.fire_damage,
-            }))
-        }else if(category === 'alcohol'){
-            modifiedData = res.data.map((data)=>({
-                region_code : data.region_code,
-                region_name : data.region_name,
-                dead_num : data.dead_num,
-                casual_num : data.casual_num,
-                casual_rate : data.casual_rate,
-                acc_rate : data.acc_rate,
-                total : data.accident_num,
-            }))
-        }else if(category === 'children'){
-            modifiedData = res.data.map((data)=>({
-                region_code : data.region_code,
-                region_name : data.region_name,
-                accident_rate : data.accident_rate,
                 safe_num : data.safe_num,
-                safe_rate : data.safe_rate,
-                total : data.accident_num,
+                total : data.accident_num
             }))
-        }else if(category === 'flood'){
-            modifiedData = res.data.map((data)=>({
-                region_code : data.region_code,
-                region_name : data.region_name,
-                total : data.people,
-            }))
-        }else if(category === 'house'){
-            modifiedData = res.data.map((data)=>({
-                region_code : data.region_code,
-                region_name : data.region_name,
-                total : data.price,
-            }))
+        }
+        else if(category === 'flood'){
+            modifiedData = res.data
+            res.data.forEach((data,i)=>{
+                modifiedData[i].total = data.people
+                delete modifiedData[i].people
+            })
+        }
+        else if(category === 'house'){
+            modifiedData = res.data
+            res.data.forEach((data,i)=>{
+                modifiedData[i].total = data.price
+                delete modifiedData[i].price
+            })
         }
         return modifiedData;
 
@@ -107,7 +93,6 @@ export const fetchOneRegionData = async (region) => {
         const res = await axios.get(baseURL + 'rate/' + region)
         const d = res.data
         const modifiedData = {
-                // ...d,
                 region_code : d.areas,
                 region_name : d.area,
                 population : d.population,

@@ -52,16 +52,19 @@ const UseSvg = ({regions , category, drawData}) => {
         return (
             <>
                 <Typography color="inherit">{name}</Typography>
-                { defaultData.length ?
-                    <Typography variant="h5">{'평당 평균 가격 '}
-                        <NumberFormat thousandSeparator={true} value ={parseInt(defaultData[index].total)} displayType={'text'}/>
-                        {'만원'}
-                    </Typography> : null
-                }
                 <Typography variant="h5">{category}{' '}
                     <NumberFormat thousandSeparator={true} value ={parseInt(num)} displayType={'text'}/>
                 </Typography>
-
+                { defaultData.length ?
+                    <>
+                    <Typography variant="body2">{'평당 평균 가격 순위 '}
+                        <NumberFormat thousandSeparator={true} value ={index+1} displayType={'text'}/>
+                        {'위'}
+                    </Typography>
+                    <Typography variant='body2'>{`( ${parseInt(defaultData[index].total)}만원 )`}</Typography>
+                    </>
+                     : null
+                }
             </>
         );
     }

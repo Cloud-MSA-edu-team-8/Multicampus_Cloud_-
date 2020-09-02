@@ -13,25 +13,11 @@
     background: inherit;
     color: inherit;
 }
-.tboptions {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-}
-.paper {
-    width:100%;
-}
-.icon {
-    margin-right: 55vw;
-}
 
 @media only screen and (max-width: 770px) {
     .container {
         width: 100%;
         margin : 1vh auto;
-    }
-    .icon {
-        margin-right: 60vw;
     }
 
 }

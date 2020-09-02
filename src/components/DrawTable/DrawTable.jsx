@@ -160,21 +160,12 @@ const DrawTable = ({regions, category}) => {
 
     return(
         <div className={styles.container}>
-            <div className={styles.tboptions}>
-                <Tooltip title={<Typography component="span">컬럼명을 누르면 해당 컬럼 기준으로 정렬 가능</Typography>} arrow placement="top-start">
-                    <AnnouncementIcon className={styles.icon} />
-                </Tooltip>
-                <span align='right'>
-                <FormControlLabel
-                    className={styles.denseform}
-                    control={<Switch checked={dense} onChange={handleChangeDense} />}
-                    label="간격 축소"
-                />
-                </span>
-            </div>
-            <Paper className={styles.paper}>
+            <Tooltip title={<Typography component="span">컬럼명을 누르면 해당 컬럼 기준으로 정렬 가능</Typography>} arrow placement="top-start">
+                <AnnouncementIcon className={styles.icon} />
+            </Tooltip>
+            <Paper >
                 <TableContainer className={classes.tableContainer}>
-                    <Table stickyHeader size={dense ? 'small' : 'medium'} aria-label="sticky table">
+                    <Table stickyHeader size={dense ? 'small' : 'medium'} aria-label="sticky table"  style={{ width: "auto", tableLayout: "auto" }}>
                     <SortableTableHead
                         classes={classes}
                         order={order}
@@ -207,10 +198,14 @@ const DrawTable = ({regions, category}) => {
                                 </TableRow>
                             }
                         </TableBody>
+
                     </Table>
                 </TableContainer>
             </Paper>
-
+            <FormControlLabel
+                control={<Switch checked={dense} onChange={handleChangeDense} />}
+                label="간격 축소"
+            />
         </div>
     )
     

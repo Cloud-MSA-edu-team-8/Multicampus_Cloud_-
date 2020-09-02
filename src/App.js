@@ -103,9 +103,12 @@ class App extends React.Component{
             <div className={styles.container}>
                 <Header scrollToContent={this.scrollToContent}/>
                 <Picker handlePickerFunction={this.handleCategoryChange} ref={this.firstPickerSection}/>
+                <Typography className={styles.explain} component='p'>{"모든데이터는 2015년 - 2019년의 데이터"}</Typography>
                 {loading
                     ?   <Loading/>
-                    :   <Typography variant="h3" align='justify'>{category}</Typography>}
+                    :   <>
+                            <Typography variant="h3" align='justify'>{category}</Typography>
+                        </>}
                 {regions.length
                     ?
                     <>

@@ -26,13 +26,14 @@ Frontend : React >> link : https://multicampus-cloud-msa-safehome.github.io/safe
 [V] Nav with app bar CSS work
 [V] Material-ui tabs as nav >> (creatRef)
 [V] Error handling (roughly)
-[ ] Trimming dictionaries
+[V] Trimming dictionaries
 [ ] Naming (convention)
-
+<del>
 [ ] React router
 [ ] Login? 
 [ ] Preference?
 [ ] Redux
+</del>
 </pre>
 
 #### Backend

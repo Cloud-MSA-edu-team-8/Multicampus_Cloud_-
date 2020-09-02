@@ -22,6 +22,7 @@ const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
         const makeDict = () =>{
             var regionColorDict ={}
             drawData.map(e=>regionColorDict[e.region_code] = e.district_color)
+            // console.log(regionColorDict)
             return regionColorDict;
         }
         setColorCodes(makeDict());
@@ -35,8 +36,7 @@ const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
     const korColumns = dataOnlyColumns.map(c=>columnDict[c])
 
     const dataSets = regionDatasets.map(regionsDataset=>{
-        let regionCode = "KR" + regionsDataset.region_code,
-            regionColor = colorCodes[regionCode];
+        let regionColor = colorCodes[regionsDataset.region_code];
         return {
             label : regionsDataset.region_name,
             backgroundColor: regionColor +'66',
@@ -53,14 +53,12 @@ const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
     }
 
     return(
-        <div className={styles.container} ref={ref}>
         <>
-            <Typography component='p' className={styles.p}> !! 값 = ( 해당 구의 값 / 25개구 중 최대 값) * 100 !! </Typography>
+            <Typography component='p' className={styles.p} ref={ref}> ** 값 = ( 해당 구의 값 / 25개구 중 최대 값) * 100 </Typography>
             <Radar
                 data ={radarData}
             />
         </>
-        </div>
 
     )
 });

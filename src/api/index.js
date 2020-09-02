@@ -10,11 +10,23 @@ export const fetchCategoryData = async (category) =>{
         const res = await axios.get(baseURL+category);
         var modifiedData
         if(category ==='crime'){
-            modifiedData = res.data
+            modifiedData = res.data.map(data=>({
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
+                murder: data.murder,
+                robber: data.robber,
+                rape: data.rape,
+                theft: data.theft,
+                violence: data.violence,
+                total: data.total,
+                arr_total: data.arr_total,
+                arrest: data.arrest
+            }))
         }
         else if(category ==='population'){
             modifiedData = res.data.map(data=>({
-                region_code: data.region_code,
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
                 household: data.household,
                 total_male: data.total_male,
                 total_female: data.total_female,
@@ -24,40 +36,46 @@ export const fetchCategoryData = async (category) =>{
             }))
         }
         else if(category === 'fire'){
-            modifiedData = res.data
-            res.data.forEach((data,i)=>{
-                modifiedData[i].total = data.fire_damage
-                delete modifiedData[i].fire_damage
-            })
+            modifiedData = res.data.map(data=>({
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
+                total: data.fire_damage,
+            }))
         }
         else if(category === 'alcohol'){
-            modifiedData = res.data
-
-            res.data.forEach((data,i)=>{
-                modifiedData[i].total = data.accident_num
-                delete modifiedData[i].accident_num
-            })
+            modifiedData = res.data.map(data=>({
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
+                dead_num: data.dead_num,
+                casual_num: data.casual_num,
+                total: data.accident_num,
+            }))
         }
         else if(category === 'children'){
             modifiedData = res.data.map(data=>({
-                region_code : data.region_code,
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
                 safe_num : data.safe_num,
                 total : data.accident_num
             }))
         }
         else if(category === 'flood'){
-            modifiedData = res.data
-            res.data.forEach((data,i)=>{
-                modifiedData[i].total = data.people
-                delete modifiedData[i].people
-            })
+            modifiedData = res.data.map(data=>({
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
+                total_cost : data.total_cost,
+                house : data.house,
+                buildings : data.buildings,
+                public : data.public,
+                total : data.people,
+            }))
         }
         else if(category === 'house'){
-            modifiedData = res.data
-            res.data.forEach((data,i)=>{
-                modifiedData[i].total = data.price
-                delete modifiedData[i].price
-            })
+            modifiedData = res.data.map(data=>({
+                region_code: data.region_info.region_code,
+                region_name: data.region_info.region_name,
+                total : data.price
+            }))
         }
         return modifiedData;
 
@@ -93,16 +111,16 @@ export const fetchOneRegionData = async (region) => {
         const res = await axios.get(baseURL + 'rate/' + region)
         const d = res.data
         const modifiedData = {
-                region_code : d.areas,
-                region_name : d.area,
-                population : d.population,
-                flood_vic : d.flood_vic,
-                crime_num : d.crime_num,
-                crime_arr : d.crime_arr,
-                fire_cost : d.fire_cost,
-                child_car_num : d.child_car_num,
-                alc_car_num : d.alc_car_num,
-                house_price : d.house_price,
+                region_code : d.region_info.region_code,
+                region_name : d.region_info.region_name,
+                population : d.population_rate,
+                flood_vic : d.flood_vic_rate,
+                crime_num : d.crime_num_rate,
+                // crime_arr : d.crime_arr_rate,
+                fire_cost : d.fire_cost_rate,
+                child_car_num : d.child_car_rate,
+                alc_car_num : d.alc_car_rate,
+                house_price : d.house_price_rate,
         }
         return modifiedData;
     } catch (e) {

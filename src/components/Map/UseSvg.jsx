@@ -15,7 +15,9 @@ const UseSvg = ({regions , category, drawData}) => {
     const getDefaultData = async () => {
         try{
             const data = await fetchCategoryData('house')
-            setDefaultData(data)
+            var sortedData = data.concat()
+            sortedData.sort((a,b)=>{return b.total - a.total})
+            setDefaultData(sortedData)
         } catch (e) {
             console.log(e)
         }

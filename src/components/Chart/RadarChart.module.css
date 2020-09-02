@@ -12,12 +12,10 @@
   flex-direction: column;
   align-items: center;
   color:#a8a8a8;
-
 }
-.container canvas {
-  height : 50vh;
-  width : 50vw;
-}
+/* .container canvas {
+  width : 100%;
+} */
 @media only screen and (max-width: 770px) { /* for mobile */
     .container {
       width: 100%;

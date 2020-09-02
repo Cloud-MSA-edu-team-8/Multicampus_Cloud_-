@@ -29,7 +29,7 @@ const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
     },[drawData]) 
     
     if(!regionDatasets || !regionDatasets.length)
-        return <div className={styles.container} ref={ref}>지역을 선택하면 Radar가 그려집니다</div>
+        return <p ref={ref}>지역을 선택하면 Radar가 그려집니다</p>
     
     const columns = Object.keys(regionDatasets[0]);
     const dataOnlyColumns = columns.filter(c=>(c !== "region_code" && c !== "region_name"))
@@ -59,7 +59,6 @@ const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
                 data ={radarData}
             />
         </>
-
     )
 });
 export default RadarChart;

@@ -103,7 +103,7 @@ class App extends React.Component{
             <div className={styles.container}>
                 <Header scrollToContent={this.scrollToContent}/>
                 <Picker handlePickerFunction={this.handleCategoryChange} ref={this.firstPickerSection}/>
-                <Typography className={styles.explain} component='p'>{"모든데이터는 2015년 - 2019년의 데이터"}</Typography>
+                <Typography className={styles.explain} component='p'>{"모든 데이터는 2015년-2019년 수치의 평균값입니다"}</Typography>
                 {loading
                     ?   <Loading/>
                     :   <>

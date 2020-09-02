@@ -98,6 +98,10 @@ const SortableTableHead = (props) =>{
         "casual_num": '부상자수',
         "acc_rate": '발생 비율',
         "casual_rate": '부상자 비율',
+        "buildings":"건물침수피해 금액",
+        "houses":"주택침수피해 금액",
+        "public":"공공시설침수피해 금액",
+        "total_cost":"총 피해 금액",
         'total' : category,
     }
     return (

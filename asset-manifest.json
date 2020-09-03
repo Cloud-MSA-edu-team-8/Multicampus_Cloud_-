@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/safehome_frontend/static/css/main.d8fd7554.chunk.css",
-    "main.js": "/safehome_frontend/static/js/main.dbb8fce2.chunk.js",
-    "main.js.map": "/safehome_frontend/static/js/main.dbb8fce2.chunk.js.map",
+    "main.js": "/safehome_frontend/static/js/main.d1e01f80.chunk.js",
+    "main.js.map": "/safehome_frontend/static/js/main.d1e01f80.chunk.js.map",
     "runtime-main.js": "/safehome_frontend/static/js/runtime-main.74e5f7df.js",
     "runtime-main.js.map": "/safehome_frontend/static/js/runtime-main.74e5f7df.js.map",
     "static/js/2.7357c990.chunk.js": "/safehome_frontend/static/js/2.7357c990.chunk.js",
     "static/js/2.7357c990.chunk.js.map": "/safehome_frontend/static/js/2.7357c990.chunk.js.map",
     "index.html": "/safehome_frontend/index.html",
-    "precache-manifest.9fe2e5a580187652f4bc302964c7cfd0.js": "/safehome_frontend/precache-manifest.9fe2e5a580187652f4bc302964c7cfd0.js",
+    "precache-manifest.7e6f8081b6a863f790c8e14ea0380d2a.js": "/safehome_frontend/precache-manifest.7e6f8081b6a863f790c8e14ea0380d2a.js",
     "service-worker.js": "/safehome_frontend/service-worker.js",
     "static/css/main.d8fd7554.chunk.css.map": "/safehome_frontend/static/css/main.d8fd7554.chunk.css.map",
     "static/js/2.7357c990.chunk.js.LICENSE.txt": "/safehome_frontend/static/js/2.7357c990.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.74e5f7df.js",
     "static/js/2.7357c990.chunk.js",
     "static/css/main.d8fd7554.chunk.css",
-    "static/js/main.dbb8fce2.chunk.js"
+    "static/js/main.d1e01f80.chunk.js"
   ]
 }

@@ -52,19 +52,19 @@ const Footer = () =>{
                     <Typography variant="h6">[글꼴]</Typography>
                     <LinkAndText 
                         component="p"
-                        text="한글 : Jua  "
-                        link="https://fonts.google.com/specimen/Jua?query=jua"
-                        />
-                    <LinkAndText 
-                        component="p"
-                        text="영어 : Russo one "
-                        link="https://fonts.google.com/specimen/Russo+One?query=russo+one"
-                        />
-                    <LinkAndText 
-                        component="p"
                         text="로고 : 잘난체 "
                         link="https://www.goodchoice.kr/font"
                         />
+                    <LinkAndText 
+                        component="p"
+                        text="전체 : Jua  "
+                        link="https://fonts.google.com/specimen/Jua?query=jua"
+                        />
+                    {/* <LinkAndText 
+                        component="p"
+                        text="영어 : Russo one "
+                        link="https://fonts.google.com/specimen/Russo+One?query=russo+one"
+                        /> */}
                 </div>
                 <div className={classes.divTag}>
                     <Typography variant="h6">[데이터]</Typography>

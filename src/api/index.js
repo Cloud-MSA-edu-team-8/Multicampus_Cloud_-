@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-var keys = require('./keys.json')
-const seoul_key = keys['seoul_key']
-
-const baseURL = "https://django-react-safehome.herokuapp.com/api/"
+// const baseURL = "https://django-react-safehome.herokuapp.com/api/"
+const baseURL = process.env.REACT_APP_API_HOST
 
 export const fetchCategoryData = async (category) =>{
     try{
@@ -146,7 +144,7 @@ export const fetchNewsData = async () =>{
 }
 export const fetchTestData = async()=>{
     try{
-        const res = await axios.get(`http://openapi.seoul.go.kr:8088/${seoul_key}/json/SPOP_DAILYSUM_JACHI/1/15/`);
+        const res = await axios.get(`http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_SEOUL_KEY}/json/SPOP_DAILYSUM_JACHI/1/15/`);
         const modData = res.data.SPOP_DAILYSUM_JACHI.row.map((data)=>({
             region_code : "KR" + data.SIGNGU_CODE_SE,
             region_name : data.SIGNGU_NM,

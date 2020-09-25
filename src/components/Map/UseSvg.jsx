@@ -17,6 +17,7 @@ const UseSvg = ({regions , category, drawData}) => {
             const data = await fetchCategoryData('house')
             var sortedData = data.concat()
             sortedData.sort((a,b)=>{return b.total - a.total})
+            console.log(sortedData)
             setDefaultData(sortedData)
         } catch (e) {
             console.log(e)
@@ -50,7 +51,7 @@ const UseSvg = ({regions , category, drawData}) => {
         else return `hsl(${color}, 100%, 50%)`
     }
 
-    const makeMsg = (name, num, index) =>{
+    const makeMsg = (name, num) =>{
         return (
             <>
                 <Typography color="inherit">{name}</Typography>
@@ -58,13 +59,19 @@ const UseSvg = ({regions , category, drawData}) => {
                     <NumberFormat thousandSeparator={true} value ={parseInt(num)} displayType={'text'}/>
                 </Typography>
                 { defaultData.length ?
-                    <>
-                    <Typography variant="body2">{'평당 평균 가격 순위 '}
-                        <NumberFormat thousandSeparator={true} value ={index+1} displayType={'text'}/>
-                        {'위'}
-                    </Typography>
-                    <Typography variant='body2'>{`( ${parseInt(defaultData[index].total)}만원 )`}</Typography>
-                    </>
+                    defaultData.map((region,index)=>{
+                        if(region.region_name == name){
+                            return (
+                            <>
+                            <Typography variant="body2">{'평당 평균 가격 순위 '}
+                                <NumberFormat thousandSeparator={true} value ={index+1} displayType={'text'}/>
+                                {'위'}
+                            </Typography>
+                            <Typography variant='body2'>{`( ${parseInt(region.total)}만원 )`}</Typography>
+                            </>
+                            )
+                        }
+                    })
                      : null
                 }
             </>
@@ -74,12 +81,14 @@ const UseSvg = ({regions , category, drawData}) => {
 
     const drawSVG =(
         <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-            {regions.map((region, index)=>
+            {regions.map(
+                (region, index)=>
                         <g key={region.region_name}>
-                            <Tooltip title={makeMsg(region.region_name, region.total, index)} arrow placement="right-end">
+                            <Tooltip title={makeMsg(region.region_name, region.total)} arrow placement="right-end">
                                 <path fill={coloring(region.total, colorDict['red'])} d={svgDict[region.region_code]}/>
                             </Tooltip>
-                        </g>)
+                        </g>
+                        )
             }
         </svg>
     )

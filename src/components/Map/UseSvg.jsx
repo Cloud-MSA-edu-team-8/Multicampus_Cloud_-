@@ -17,7 +17,6 @@ const UseSvg = ({regions , category, drawData}) => {
             const data = await fetchCategoryData('house')
             var sortedData = data.concat()
             sortedData.sort((a,b)=>{return b.total - a.total})
-            console.log(sortedData)
             setDefaultData(sortedData)
         } catch (e) {
             console.log(e)
@@ -60,7 +59,7 @@ const UseSvg = ({regions , category, drawData}) => {
                 </Typography>
                 { defaultData.length ?
                     defaultData.map((region,index)=>{
-                        if(region.region_name == name){
+                        if(region.region_name === name){
                             return (
                             <>
                             <Typography variant="body2">{'평당 평균 가격 순위 '}
@@ -70,7 +69,7 @@ const UseSvg = ({regions , category, drawData}) => {
                             <Typography variant='body2'>{`( ${parseInt(region.total)}만원 )`}</Typography>
                             </>
                             )
-                        }
+                        }else return (<></>)
                     })
                      : null
                 }

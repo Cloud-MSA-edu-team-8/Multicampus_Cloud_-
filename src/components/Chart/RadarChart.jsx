@@ -53,12 +53,12 @@ const RadarChart = React.forwardRef(({regionDatasets, drawData},ref) =>{
     }
 
     return(
-        <>
+        <div className={styles.container}>
             <Typography component='p' className={styles.p} ref={ref}> ** 값 = ( 해당 구의 값 / 25개구 중 최대 값) * 100 </Typography>
             <Radar
                 data ={radarData}
             />
-        </>
+        </div>
     )
 });
 export default RadarChart;
